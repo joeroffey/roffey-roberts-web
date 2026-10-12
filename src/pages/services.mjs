@@ -5,6 +5,8 @@ import { site } from '../data/site.mjs';
 import { groups, services, servicesInGroup, serviceBySlug } from '../data/services.mjs';
 import { projectBySlug } from '../data/work.mjs';
 import { areas } from '../data/areas.mjs';
+import { guidesForService } from '../data/guides.mjs';
+import { guideCard } from './guides.mjs';
 
 function servicePage(s) {
   const related = s.related.map((slug) => projectBySlug[slug]).filter(Boolean);
@@ -68,6 +70,19 @@ function servicePage(s) {
         <h2 class="h2" id="related-title">Where we’ve done this before.</h2>
       </div>
       <div class="work-grid" data-reveal-children>${related.map(workCard)}</div>
+    </div>
+  </section>`
+    : ''}
+
+  ${guidesForService(s.slug).length
+    ? html`
+  <section class="section section-tight" aria-labelledby="guides-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Read first</span>
+        <h2 class="h2" id="guides-title">Guides that answer the usual questions.</h2>
+      </div>
+      <div class="guide-grid" data-reveal-children>${guidesForService(s.slug).map(guideCard)}</div>
     </div>
   </section>`
     : ''}

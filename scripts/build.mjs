@@ -10,6 +10,7 @@ import * as services from '../src/pages/services.mjs';
 import * as work from '../src/pages/work.mjs';
 import * as misc from '../src/pages/misc.mjs';
 import * as areas from '../src/pages/areas.mjs';
+import * as guides from '../src/pages/guides.mjs';
 import { projects } from '../src/data/work.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -33,7 +34,7 @@ for (const p of projects) {
   if (found) p.screenshot = `/img/work/${p.slug}.${found}`;
 }
 
-const all = [...home.pages(), ...services.pages(), ...areas.pages(), ...work.pages(), ...misc.pages()];
+const all = [...home.pages(), ...services.pages(), ...areas.pages(), ...work.pages(), ...guides.pages(), ...misc.pages()];
 
 const fileFor = (path) => (path === '/' ? 'index.html' : `${path.slice(1)}.html`);
 

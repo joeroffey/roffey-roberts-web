@@ -3,6 +3,8 @@ import { faqSchema } from '../lib/layout.mjs';
 import { aurora, cta, faqSection, serviceCard, stackCard, serpCard, timeline, browser, phone, testimonialSection } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { testimonials } from '../data/testimonials.mjs';
+import { guides } from '../data/guides.mjs';
+import { guideCard } from './guides.mjs';
 import { services } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
 
@@ -192,6 +194,19 @@ export function pages() {
       <ul class="promises" data-reveal-children>
         ${promises.map(([ic, t, d], i) => html`<li class="card promise${i === promises.length - 1 ? ' promise-wide' : ''}" data-spot><span class="icon-tile">${ic}</span><div><b>${esc(t)}</b><p>${esc(d)}</p></div></li>`)}
       </ul>
+    </div>
+  </section>
+
+
+  <section class="section section-tight" aria-labelledby="guides-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Guides</span>
+        <h2 class="h2" id="guides-title">Read before you <span class="grad-text">hire anyone.</span></h2>
+        <p class="lede">What things cost, how local search works, which ads to run first and what Cyber Essentials involves.</p>
+      </div>
+      <div class="guide-grid" data-reveal-children>${guides.map(guideCard)}</div>
+      <p style="margin-top:22px"><a class="link link-arrow" href="/guides">All guides${icon.arrowRight}</a></p>
     </div>
   </section>
 

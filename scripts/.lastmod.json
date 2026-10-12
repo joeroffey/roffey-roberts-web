@@ -1,6 +1,6 @@
 {
  "/": {
-  "hash": "a09d5dc87dee7168",
+  "hash": "50df659f3e7c2c84",
   "date": "2026-10-12"
  },
  "/services": {
@@ -8,27 +8,27 @@
   "date": "2026-10-12"
  },
  "/services/website-design": {
-  "hash": "7e0631f974fcf129",
+  "hash": "120dd266784f56cd",
   "date": "2026-10-12"
  },
  "/services/seo": {
-  "hash": "09c680af94953830",
+  "hash": "2ebc2d0e5f602e92",
   "date": "2026-10-12"
  },
  "/services/digital-marketing": {
-  "hash": "91c6c42aa20f0f51",
+  "hash": "f7327fc459260f6c",
   "date": "2026-10-12"
  },
  "/services/google-meta-ads": {
-  "hash": "527b47ebda21c577",
+  "hash": "ccffe0c31ac4c95c",
   "date": "2026-10-12"
  },
  "/services/cyber-security": {
-  "hash": "878a326fced76375",
+  "hash": "52ebcbfdbdba5700",
   "date": "2026-10-12"
  },
  "/services/website-hosting": {
-  "hash": "4f6a5434d3afa0c7",
+  "hash": "fbe2a3fe1ef5e11b",
   "date": "2026-10-12"
  },
  "/web-design": {
@@ -89,6 +89,26 @@
  },
  "/404": {
   "hash": "3860362a5306f755",
+  "date": "2026-10-12"
+ },
+ "/guides": {
+  "hash": "b3f9c94e77c4ddba",
+  "date": "2026-10-12"
+ },
+ "/guides/how-much-does-a-website-cost-uk": {
+  "hash": "623ad5c5725a8b01",
+  "date": "2026-10-12"
+ },
+ "/guides/local-seo-for-trades": {
+  "hash": "c2c3ed8a173d98ea",
+  "date": "2026-10-12"
+ },
+ "/guides/google-ads-vs-meta-ads": {
+  "hash": "396242016ac95790",
+  "date": "2026-10-12"
+ },
+ "/guides/cyber-essentials-explained": {
+  "hash": "ce90788364ad0a7a",
   "date": "2026-10-12"
  }
 }
