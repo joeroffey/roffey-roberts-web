@@ -20,7 +20,7 @@ Design: dark, luminous and dimensional. Bricolage Grotesque for headlines, Inter
 | Real screenshots of client sites (replace the drawn mockups) | `static/img/work/<slug>.jpg` |
 | Behaviour (menu, search preview, form, consent) | `static/js/site.js` |
 
-Push to `main` and Vercel rebuilds and deploys automatically.
+Push to `main`, then deploy from Vercel (Project → Deployments → Create deployment, or `vercel --prod`). Pushes don't trigger a deploy by themselves until the Git integration is connected under Project → Settings → Git.
 
 ## Running locally
 
