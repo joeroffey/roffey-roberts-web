@@ -78,8 +78,9 @@ export function pages() {
           <ul>${projects.map((p) => html`<li><a href="/work/${p.slug}">${esc(p.name)}</a></li>`)}</ul>
         </div>
       </div>
-      <div class="hero-scene" data-scene aria-hidden="true">
+      <div class="hero-scene" data-scene aria-hidden="true" data-nosnippet>
         <span class="scene-glow"></span>
+        <span class="scene-label">Example site</span>
         <div class="scene-window">${browser(demo)}</div>
         <div class="scene-phone">${phone(demo)}</div>
         <div class="float float-card float-perf">
@@ -121,7 +122,7 @@ export function pages() {
   <section class="section section-tight" aria-label="Our standards">
     <div class="wrap">
       <div class="stats" data-reveal-children>
-        ${standards.map(([n, suffix, text]) => html`<div class="card stat" data-spot><b><span data-count="${n}">0</span>${suffix}</b><span>${esc(text)}</span></div>`)}
+        ${standards.map(([n, suffix, text]) => html`<div class="card stat" data-spot><b><span data-count="${n}">${n}</span>${suffix}</b><span>${esc(text)}</span></div>`)}
       </div>
     </div>
   </section>
@@ -140,7 +141,7 @@ export function pages() {
     </div>
   </section>
 
-  <section class="section rel" aria-labelledby="preview-title">
+  <section class="section rel" aria-labelledby="preview-title" data-nosnippet>
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>

@@ -57,7 +57,7 @@ for (const p of pages) {
   if (!title) continue;
   await page.setContent(card(title, isHome), { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);
-  await page.screenshot({ path: join(root, `static/img/og/${p.og}.png`) });
+  await page.screenshot({ path: join(root, `static/img/og/${p.og}.jpg`), type: 'jpeg', quality: 84 });
   console.log('og', p.og);
 }
 

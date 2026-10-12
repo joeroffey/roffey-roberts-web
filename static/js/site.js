@@ -51,10 +51,10 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     revealEls.forEach(function (el) { io.observe(el); });
-    $$('[data-count]').forEach(function (el) { if (!el.closest('[data-reveal], [data-reveal-children]')) io.observe(el); });
+    // The HTML carries the real number (for crawlers and no-JS readers); reset to 0 only now, just before animating.
+    $$('[data-count]').forEach(function (el) { el.textContent = '0'; if (!el.closest('[data-reveal], [data-reveal-children]')) io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('is-in'); });
-    $$('[data-count]').forEach(function (el) { el.textContent = el.getAttribute('data-count'); });
   }
 
   function countUp(el) {

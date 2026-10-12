@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { html, esc, jsonLd, icon, iconSprite } from './html.mjs';
 import { site, nav } from '../data/site.mjs';
+import { areas } from '../data/areas.mjs';
 import { services } from '../data/services.mjs';
 import { serviceIcons } from './components.mjs';
 
@@ -17,7 +18,7 @@ export const organization = {
   name: site.name,
   url: site.url,
   logo: `${site.url}/img/logo-512.png`,
-  image: `${site.url}/img/og/home.png`,
+  image: `${site.url}/img/og/home.jpg`,
   description: site.tagline,
   ...(site.email && { email: site.email }),
   ...(site.phone && { telephone: site.phoneHref || site.phone }),
@@ -132,12 +133,19 @@ function footer() {
           <p class="footer-head">Services</p>
           <ul>${services.map((s) => html`<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`)}</ul>
         </nav>
+        <nav class="footer-col" aria-label="Areas">
+          <p class="footer-head">Areas</p>
+          <ul>
+            ${areas.map((a) => html`<li><a href="/web-design/${a.slug}">Web design ${esc(a.short)}</a></li>`)}
+            <li><a href="/web-design">All areas</a></li>
+          </ul>
+        </nav>
         <nav class="footer-col" aria-label="Studio">
           <p class="footer-head">Studio</p>
           <ul>
             <li><a href="/work">Work</a></li>
             <li><a href="/about">About</a></li>
-            <li><a href="/web-design">Areas we cover</a></li>
+            <li><a href="/guides">Guides</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/privacy">Privacy</a></li>
           </ul>
@@ -205,7 +213,7 @@ function googleTag() {
 
 export function page({ path, title, description, body, schema = [], og = 'home', noindex = false, bodyClass = '', assetVersion = '' }) {
   const canonical = `${site.url}${path === '/' ? '/' : path}`;
-  const ogImage = `${site.url}/img/og/${og}.png`;
+  const ogImage = `${site.url}/img/og/${og}.jpg`;
   const graph = { '@context': 'https://schema.org', '@graph': [organization, ...schema] };
   const v = assetVersion ? `?v=${assetVersion}` : '';
   const trackingConfig = hasTracking

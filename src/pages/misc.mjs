@@ -277,7 +277,8 @@ function privacy() {
     path: '/privacy',
     title: 'Privacy Notice | Roffey-Roberts Web',
     description: 'How Roffey-Roberts Web collects, uses and looks after your personal information, and how we use cookies.',
-    og: 'home',
+    og: 'privacy',
+    ogTitle: 'Privacy & cookies',
     schema: [breadcrumbs([['Home', '/'], ['Privacy', '/privacy']])],
     body,
   };

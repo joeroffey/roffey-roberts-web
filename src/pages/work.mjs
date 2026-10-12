@@ -4,6 +4,7 @@ import { aurora, breadcrumb, browser, cta, featureGrid, serpCard, workCard, serv
 import { site } from '../data/site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
+import { areaBySlug } from '../data/areas.mjs';
 
 function indexPage() {
   const used = services.filter((s) => projects.some((p) => p.scope.includes(s.slug)));
@@ -57,6 +58,7 @@ function projectPage(p, i) {
         <dl class="case-meta">
           <div><dt>Sector</dt><dd>${esc(p.sector)}</dd></div>
           <div><dt>Location</dt><dd>${esc(p.location)}</dd></div>
+          ${p.areas && p.areas.length ? html`<div><dt>Local pages</dt><dd>${p.areas.map((a, i) => html`${i ? ' · ' : ''}<a href="/web-design/${a}">${esc(areaBySlug[a].short)}</a>`)}</dd></div>` : ''}
           <div><dt>Scope</dt><dd>${esc(p.scopeLabel)}</dd></div>
           <div><dt>Live site</dt><dd><a href="${p.url}" rel="noopener" target="_blank">${esc(p.domain)}${icon.arrowUpRight}<span class="sr-only"> (opens in a new tab)</span></a></dd></div>
         </dl>

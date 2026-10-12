@@ -94,7 +94,7 @@ export const areas = [
     county: 'Dorset',
     title: 'Web Design Bournemouth & Poole | Roffey-Roberts Web',
     description:
-      'Web design, SEO and Google Ads for businesses in Bournemouth, Poole and Christchurch. Fast, hand-built websites that win enquiries, from a South Coast studio.',
+      'Web design, SEO and Google Ads for businesses in Bournemouth, Poole and Christchurch. Hand-built websites that win enquiries, from a Hampshire studio.',
     h1: 'Web design in Bournemouth and Poole',
     lede:
       'Websites, local SEO and ads for businesses across Bournemouth, Poole, Christchurch and the surrounding Dorset towns, from a studio just over the Hampshire border.',
@@ -123,7 +123,7 @@ export const areas = [
     county: 'Hampshire',
     title: 'Web Design Lymington & New Forest | Roffey-Roberts Web',
     description:
-      'Web design, SEO and marketing for businesses in Lymington, Brockenhurst, Lyndhurst, New Milton and Ringwood, from a studio with three live sites in the area.',
+      'Web design, SEO and marketing for businesses in Lymington, Brockenhurst, Lyndhurst, New Milton and Ringwood, from a studio with three live sites nearby.',
     h1: 'Web design in Lymington and the New Forest',
     lede:
       'Websites and local SEO for businesses in Lymington and across the New Forest, where three of our most recent projects are based.',

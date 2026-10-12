@@ -4,6 +4,7 @@ import { aurora, breadcrumb, cta, faqSection, featureGrid, serviceVisual, servic
 import { site } from '../data/site.mjs';
 import { groups, services, servicesInGroup, serviceBySlug } from '../data/services.mjs';
 import { projectBySlug } from '../data/work.mjs';
+import { areas } from '../data/areas.mjs';
 
 function servicePage(s) {
   const related = s.related.map((slug) => projectBySlug[slug]).filter(Boolean);
@@ -41,7 +42,7 @@ function servicePage(s) {
       </div>
       <div class="section-head" data-reveal>
         <span class="eyebrow">What’s included</span>
-        <h2 class="h2" id="included-title">Everything in the box.</h2>
+        <h2 class="h2" id="included-title">${esc(s.includedHeading || `What’s included in our ${s.noun}`)}</h2>
       </div>
       ${featureGrid(s.included)}
     </div>
@@ -51,7 +52,7 @@ function servicePage(s) {
     <div class="wrap">
       <div class="section-head" data-reveal>
         <span class="eyebrow">How it works</span>
-        <h2 class="h2" id="how-title">From first call to <span class="grad-text">results.</span></h2>
+        <h2 class="h2" id="how-title">${esc(s.howHeading || `How our ${s.noun} works`)}</h2>
       </div>
       ${timeline(s.steps)}
     </div>
@@ -77,6 +78,8 @@ function servicePage(s) {
     <div class="wrap" data-reveal>
       <h2 class="h3" id="others-title" style="margin-bottom:18px">Works well with</h2>
       <div class="pill-list">${others.map((o) => html`<a href="/services/${o.slug}">${serviceIcons[o.slug]}${esc(o.name)}</a>`)}</div>
+      <h2 class="h3" id="areas-title" style="margin:36px 0 18px">${esc(s.name)} across the South Coast</h2>
+      <div class="pill-list">${areas.map((a) => html`<a href="/web-design/${a.slug}">${icon.pin}${esc(a.name)}</a>`)}<a href="/web-design">${icon.globe}All areas</a></div>
     </div>
   </section>
 

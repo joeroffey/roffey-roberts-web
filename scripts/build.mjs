@@ -48,10 +48,23 @@ for (const p of all) {
   writeFileSync(file, page({ ...p, assetVersion }));
 }
 
-// Sitemap and robots. No lastmod (it would only ever be the build date) and no priority (Google ignores it).
+// Sitemap and robots. <lastmod> is tracked per page in scripts/.lastmod.json: a page's date only moves when its
+// rendered content changes (asset version and footer year excluded), so it is accurate rather than the build date.
+// Commit scripts/.lastmod.json after building so the deployed build agrees. No priority (Google ignores it).
+const lastmodFile = join(root, 'scripts/.lastmod.json');
+const lastmod = existsSync(lastmodFile) ? JSON.parse(readFileSync(lastmodFile, 'utf8')) : {};
+const today = new Date().toISOString().slice(0, 10);
+for (const p of all) {
+  const content = page({ ...p, assetVersion: '' }).replace(/© \d{4}/, '©');
+  const hash = createHash('sha256').update(content).digest('hex').slice(0, 16);
+  const prev = lastmod[p.path];
+  if (!prev || prev.hash !== hash) lastmod[p.path] = { hash, date: today };
+}
+for (const k of Object.keys(lastmod)) if (!all.some((p) => p.path === k)) delete lastmod[k];
+writeFileSync(lastmodFile, JSON.stringify(lastmod, null, 1) + '\n');
 const urls = all
   .filter((p) => !p.noindex && p.sitemap !== false)
-  .map((p) => `  <url><loc>${site.url}${p.path === '/' ? '/' : p.path}</loc></url>`);
+  .map((p) => `  <url><loc>${site.url}${p.path === '/' ? '/' : p.path}</loc><lastmod>${lastmod[p.path].date}</lastmod></url>`);
 writeFileSync(
   join(out, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`
@@ -81,7 +94,7 @@ writeFileSync(
   JSON.stringify(all.map((p) => ({ path: p.path, og: p.og, ogTitle: p.ogTitle || null })), null, 2)
 );
 
-if (!existsSync(join(out, 'img/og/home.png'))) console.warn('! OG images missing: run `node scripts/og.mjs` locally with Playwright.');
+if (!existsSync(join(out, 'img/og/home.jpg'))) console.warn('! OG images missing: run `node scripts/og.mjs` locally with Playwright.');
 
 // The inline Google tag must be allowed by the CSP in vercel.json, or browsers will block it.
 const inline = googleTagInline();

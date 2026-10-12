@@ -1,8 +1,8 @@
 /* Roffey-Roberts Web — design system
    Dark, luminous, dimensional. Bricolage Grotesque for display, Inter for everything else. */
 
-@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
-@font-face { font-family: "Inter"; src: url("/fonts/inter.woff2") format("woff2"); font-weight: 300 700; font-display: swap; }
+@font-face { font-family: "Bricolage"; src: url("/fonts/bricolage.woff2") format("woff2"); font-weight: 500 800; font-display: swap; }
+@font-face { font-family: "Inter"; src: url("/fonts/inter.woff2") format("woff2"); font-weight: 400 700; font-display: swap; }
 
 :root {
   --bg: #07080D;
@@ -284,6 +284,7 @@ main:focus { outline: none; }
 /* The scene: a tilted browser window, a phone and floating cards that parallax with the cursor. */
 .hero-scene { position: relative; container-type: inline-size; aspect-ratio: 1 / 0.92; perspective: 1600px; --px: 0; --py: 0; }
 .hero-scene > * { position: absolute; }
+.scene-label { left: 13%; top: -6%; z-index: 3; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-3); background: rgba(255,255,255,0.06); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; backdrop-filter: blur(8px); }
 .scene-glow { inset: 10% 5%; border-radius: 50%; background: radial-gradient(circle, rgba(124, 108, 255, 0.35), rgba(46, 197, 255, 0.12) 45%, transparent 70%); filter: blur(10px); }
 .scene-window { left: 13%; top: 2%; width: 87%; transform: rotateY(calc(-12deg + var(--px) * 6deg)) rotateX(calc(6deg - var(--py) * 5deg)) translate3d(calc(var(--px) * -8px), calc(var(--py) * -8px), 0); transform-style: preserve-3d; transition: transform 0.2s ease-out; }
 .scene-phone { left: 0; bottom: 0; width: 25%; transform: rotateY(calc(10deg + var(--px) * 8deg)) rotateX(calc(4deg - var(--py) * 6deg)) translate3d(calc(var(--px) * -22px), calc(var(--py) * -22px), 60px); transition: transform 0.2s ease-out; }
@@ -658,7 +659,7 @@ select option { background: #10131D; color: var(--text); }
 .footer-brand { grid-column: 1 / -1; display: grid; gap: 16px; align-content: start; }
 .footer-brand p { max-width: 22rem; color: var(--text-2); font-size: 0.9375rem; }
 .site-footer .logo { width: 44px; }
-@media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.6fr 1fr 1fr 1fr; } .footer-brand { grid-column: auto; } }
+@media (min-width: 1024px) { .footer-grid { grid-template-columns: 1.5fr 1fr 1fr 0.8fr 1fr; } .footer-brand { grid-column: auto; } }
 .footer-head { font-weight: 600; margin-bottom: 14px; }
 .footer-col li { padding: 5px 0; }
 .footer-col a { color: var(--text-2); text-decoration: none; font-size: 0.9375rem; transition: color 0.2s; }

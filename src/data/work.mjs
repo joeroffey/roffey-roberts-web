@@ -7,6 +7,7 @@ export const projects = [
     domain: 'dmcindustrialdoors.com',
     sector: 'Industrial and commercial doors',
     location: 'Ringwood, Hampshire',
+    areas: ['lymington-new-forest', 'bournemouth'],
     scope: ['website-design', 'seo', 'website-hosting'],
     scopeLabel: 'New website, local SEO, hosting',
     summary:
@@ -50,6 +51,7 @@ export const projects = [
     domain: 'solwatgreenenergy.co.uk',
     sector: 'Renewable energy installation',
     location: 'Lymington, Hampshire',
+    areas: ['lymington-new-forest', 'southampton'],
     scope: ['website-design', 'seo'],
     scopeLabel: 'Website redesign, SEO',
     summary:
@@ -91,6 +93,7 @@ export const projects = [
     domain: 'solwatmaintenance.co.uk',
     sector: 'Renewable energy servicing',
     location: 'Lymington, Hampshire',
+    areas: ['lymington-new-forest', 'southampton'],
     scope: ['website-design', 'seo', 'digital-marketing'],
     scopeLabel: 'Redesign, local SEO, growth strategy',
     summary:
@@ -132,6 +135,7 @@ export const projects = [
     domain: 'revitalisehub.co.uk',
     sector: 'Wellness and contrast therapy',
     location: 'Lymington, Hampshire',
+    areas: ['lymington-new-forest', 'southampton'],
     scope: ['seo', 'website-design'],
     scopeLabel: 'SEO and design improvements',
     summary:
