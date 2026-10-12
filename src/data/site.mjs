@@ -26,7 +26,7 @@ export const site = {
   // Tracking IDs. Leave empty and no tracking code or cookie banner is added.
   // When any ID is set, a consent banner appears and nothing loads until a visitor accepts.
   tracking: {
-    ga4: '', // e.g. G-XXXXXXXXXX
+    ga4: 'G-39ZYSMS4PT',
     googleAds: '', // e.g. AW-XXXXXXXXX
     googleAdsLeadLabel: '', // conversion label for form submissions, e.g. AbCdEfGh123
     metaPixel: '', // e.g. 123456789012345
