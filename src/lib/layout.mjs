@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { html, esc, jsonLd, icon } from './html.mjs';
 import { site, nav } from '../data/site.mjs';
-import { groups, servicesInGroup, services } from '../data/services.mjs';
+import { services } from '../data/services.mjs';
+import { serviceIcons } from './components.mjs';
 
 const markSvg = readFileSync(new URL('../../static/favicon.svg', import.meta.url), 'utf8')
   .replace('<svg ', '<svg class="mark" aria-hidden="true" focusable="false" ');
@@ -25,78 +26,63 @@ export const organization = {
 
 export const breadcrumbs = (items) => ({
   '@type': 'BreadcrumbList',
-  itemListElement: items.map(([name, path], i) => ({
-    '@type': 'ListItem',
-    position: i + 1,
-    name,
-    item: `${site.url}${path}`,
-  })),
+  itemListElement: items.map(([name, path], i) => ({ '@type': 'ListItem', position: i + 1, name, item: `${site.url}${path}` })),
 });
 
 export const faqSchema = (faqs) => ({
   '@type': 'FAQPage',
-  mainEntity: faqs.map(([q, a]) => ({
-    '@type': 'Question',
-    name: q,
-    acceptedAnswer: { '@type': 'Answer', text: a },
-  })),
+  mainEntity: faqs.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 });
 
 const isCurrent = (path, href) => (href === '/' ? path === '/' : path === href || path.startsWith(href + '/'));
 
 function header(path) {
   const panel = html`
-    <div class="nav-panel" role="group" aria-label="Services">
+    <div class="nav-panel">
       <div class="nav-panel-inner">
-        ${groups.map(
-          (g) => html`
-            <div class="nav-group">
-              <p class="nav-group-name">${g.name}</p>
-              <ul>
-                ${servicesInGroup(g.id).map(
-                  (s) => html`<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`
-                )}
-              </ul>
-            </div>`
+        ${services.map(
+          (s) => html`
+          <a class="nav-item" href="/services/${s.slug}">
+            <span class="icon-tile">${serviceIcons[s.slug]}</span>
+            <span><b>${esc(s.name)}</b><span>${esc(s.card)}</span></span>
+          </a>`
         )}
-        <a class="nav-panel-all" href="/services">All services</a>
+        <div class="nav-panel-foot"><span>Not sure where to start?</span><a class="link link-arrow" href="/contact">Talk to us${icon.arrowRight}</a></div>
       </div>
     </div>`;
 
   return html`
   <a class="skip" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true" data-progress></div>
   <header class="site-header" data-header>
-    <div class="wrap header-inner">
+    <div class="nav-pill">
       <a class="brand" href="/" aria-label="${esc(site.name)}, home">${markSvg}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
       <nav class="nav" aria-label="Main">
         <ul class="nav-list">
           ${nav.map(
             (item) => html`
-              <li class="${item.href === '/services' ? 'has-panel' : ''}">
-                <a href="${item.href}"${isCurrent(path, item.href) ? ' aria-current="page"' : ''}>${item.label}</a>
-                ${item.href === '/services' ? panel : ''}
-              </li>`
+            <li class="${item.href === '/services' ? 'has-panel' : ''}">
+              <a href="${item.href}"${isCurrent(path, item.href) ? ' aria-current="page"' : ''}>${item.label}${item.href === '/services' ? icon.chevronDown : ''}</a>
+              ${item.href === '/services' ? panel : ''}
+            </li>`
           )}
         </ul>
       </nav>
-      <a class="btn btn-amber btn-sm header-cta" href="/contact">Start a project</a>
+      <a class="btn btn-primary btn-sm header-cta" href="/contact" data-magnet>Start a project${icon.arrowRight}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
-        <span class="menu-open">${icon.menu}</span><span class="menu-close">${icon.close}</span>
-        <span class="sr-only">Menu</span>
+        <span class="menu-open">${icon.menu}</span><span class="menu-close">${icon.close}</span><span class="sr-only">Menu</span>
       </button>
     </div>
-    <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
-      <div class="wrap">
-        <ul class="mobile-primary">
-          ${nav.map((item) => html`<li><a href="${item.href}"${isCurrent(path, item.href) ? ' aria-current="page"' : ''}>${item.label}</a></li>`)}
-        </ul>
-        <ul class="mobile-services">
-          ${services.map((s) => html`<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`)}
-        </ul>
-        <a class="btn btn-amber btn-block" href="/contact">Start a project</a>
-      </div>
-    </div>
-  </header>`;
+  </header>
+  <div class="mobile-menu" id="mobile-menu" data-mobile-menu hidden>
+    <ul class="mobile-primary">
+      ${nav.map((item) => html`<li><a href="${item.href}"${isCurrent(path, item.href) ? ' aria-current="page"' : ''}>${item.label}${icon.arrowUpRight}</a></li>`)}
+    </ul>
+    <ul class="mobile-services">
+      ${services.map((s) => html`<li><a href="/services/${s.slug}">${serviceIcons[s.slug]}${esc(s.name)}</a></li>`)}
+    </ul>
+    <a class="btn btn-primary btn-lg" href="/contact" style="width:100%">Start a project${icon.arrowRight}</a>
+  </div>`;
 }
 
 function footer() {
@@ -104,14 +90,12 @@ function footer() {
   return html`
   <footer class="site-footer">
     <div class="wrap">
-      <div class="footer-top">
-        <p class="footer-statement" aria-hidden="true">Built properly.<br />Found first.<br />Kept safe.</p>
-        <p class="footer-where">Based in ${esc(site.base)}. Working with businesses across the South Coast and the rest of the UK.</p>
-      </div>
+      <p class="footer-word" aria-hidden="true">Roffey-Roberts</p>
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="/" aria-label="${esc(site.name)}, home">${markSvg}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
           <p>A ${esc(site.base)} web studio. Websites, SEO, marketing, ads, security and hosting for businesses across the South Coast and the UK.</p>
+          <a class="btn btn-ghost btn-sm" href="/contact" style="justify-self:start">Start a project${icon.arrowRight}</a>
         </div>
         <nav class="footer-col" aria-label="Services">
           <p class="footer-head">Services</p>
@@ -132,16 +116,14 @@ function footer() {
             ${site.email && html`<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>`}
             ${site.phone && html`<li><a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a></li>`}
             <li><a href="/contact">Send an enquiry</a></li>
+            <li><a href="/contact?review=1">Free website review</a></li>
             ${site.sameAs.map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(new URL(u).hostname.replace('www.', ''))}</a></li>`)}
           </ul>
         </div>
       </div>
       <div class="footer-base">
-        <p>© ${year} ${esc(site.name)}</p>
-        <p>
-          <a href="/privacy">Privacy</a>
-          ${hasTracking && html`<button type="button" class="link-button" data-consent-open>Cookie settings</button>`}
-        </p>
+        <p>© ${year} ${esc(site.name)}. ${esc(site.base)}, UK.</p>
+        <p><a href="/privacy">Privacy</a>${hasTracking && html`<button type="button" data-consent-open>Cookie settings</button>`}<a href="/sitemap.xml">Sitemap</a></p>
       </div>
     </div>
   </footer>`;
@@ -155,7 +137,7 @@ function consentBanner() {
       <p>We’d like to use cookies to measure visits and the results of our ads. Nothing is set unless you agree. <a href="/privacy#cookies">More about cookies</a></p>
       <div class="consent-actions">
         <button type="button" class="btn btn-ghost btn-sm" data-consent-choice="denied">Reject</button>
-        <button type="button" class="btn btn-amber btn-sm" data-consent-choice="granted">Accept</button>
+        <button type="button" class="btn btn-primary btn-sm" data-consent-choice="granted">Accept</button>
       </div>
     </div>
   </div>`;
@@ -190,24 +172,30 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${esc(title)}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B2A31">
+<meta name="theme-color" content="#07080D">
+<meta name="color-scheme" content="dark">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
-<link rel="preload" href="/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css${v}">
+<script>document.documentElement.classList.add('js')</script>
 <script src="/js/site.js${v}" defer></script>
 ${trackingConfig}
 ${jsonLd(graph)}
 </head>
 <body class="${esc(bodyClass)}">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient></defs></svg>
 ${header(path)}
 <main id="main" tabindex="-1">
 ${body}
 </main>
 ${footer()}
 ${consentBanner()}
+<div class="cursor" aria-hidden="true" data-cursor-dot></div>
+<div class="cursor-ring" aria-hidden="true" data-cursor-ring><span>View</span></div>
 </body>
 </html>
 `;

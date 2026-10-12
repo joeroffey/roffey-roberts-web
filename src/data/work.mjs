@@ -30,6 +30,11 @@ export const projects = [
     mock: {
       variant: 'quote',
       brand: '#0C2249',
+      brand2: '#1B3FA6',
+      dark: true,
+      photo: 'ph-doors',
+      photos: ['ph-doors', 'ph-doors', 'ph-doors'],
+      items: ['Roller shutters', 'Sectional doors', 'Fire shutters'],
       logo: 'DMC',
       nav: ['Services', 'Areas', 'Maintenance', 'Contact'],
       eyebrow: 'Family-run, South of England',
@@ -68,6 +73,9 @@ export const projects = [
     mock: {
       variant: 'services',
       brand: '#11284A',
+      brand2: '#2F7D4F',
+      photo: 'ph-solar',
+      photos: ['ph-pump', 'ph-solar', 'ph-pump'],
       logo: 'Solwat',
       nav: ['Services', 'Sectors', 'Areas', 'Advice'],
       eyebrow: 'Intelligent energy solutions',
@@ -106,6 +114,9 @@ export const projects = [
     mock: {
       variant: 'areas',
       brand: '#11284A',
+      brand2: '#2F8F86',
+      dark: true,
+      photo: 'ph-pump',
       logo: 'Solwat',
       nav: ['Services', 'Areas', 'Advice', 'Contact'],
       eyebrow: 'Preserving the performance of renewable energy',
@@ -144,6 +155,9 @@ export const projects = [
     mock: {
       variant: 'booking',
       brand: '#141A1F',
+      brand2: '#8FD3E8',
+      dark: true,
+      photos: ['ph-ice', 'ph-sauna', 'ph-red'],
       logo: 'Revitalise',
       nav: ['Book', 'Memberships', 'Journal', 'Visit'],
       eyebrow: 'Welcome to Revitalise Hub',

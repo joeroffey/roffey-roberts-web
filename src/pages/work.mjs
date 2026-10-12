@@ -1,34 +1,41 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs } from '../lib/layout.mjs';
-import { breadcrumb, ctaBand, projectRow, serviceLinks, shot } from '../lib/components.mjs';
+import { aurora, breadcrumb, browser, cta, featureGrid, serpCard, workCard, serviceIcons, tags } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
+import { services, serviceBySlug } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
 
 function indexPage() {
+  const used = services.filter((s) => projects.some((p) => p.scope.includes(s.slug)));
   const body = html`
-  <section class="page-hero s-dark page-hero-tight" aria-labelledby="page-title">
-    <div class="wrap">
-      ${breadcrumb([['Home', '/'], ['Work', '/work']])}
-      <h1 class="page-title" id="page-title">Work</h1>
-      <div class="page-hero-foot">
-        <p class="page-lede">Websites for installers, engineers and studios along the South Coast. Each one built to be found locally and to turn visits into calls, quotes and bookings.</p>
+  <section class="page-hero" aria-labelledby="page-title">
+    ${aurora()}
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap z">
+      <div class="page-hero-copy" data-reveal-children>
+        ${breadcrumb([['Home', '/'], ['Work', '/work']])}
+        <h1 class="display h1 page-title" id="page-title">Work that <span class="grad-text">works.</span></h1>
+        <p class="lede">Websites for installers, engineers and studios along the South Coast. Each one built to be found locally and to turn visits into calls, quotes and bookings.</p>
       </div>
     </div>
   </section>
-  <section class="section s-dark work-list" aria-label="Case studies">
-    <div class="wrap projects">
-      ${projects.map((p, i) => projectRow(p, i, { headingLevel: 2 }))}
+  <section class="section" style="padding-top:0" aria-label="Case studies">
+    <div class="wrap">
+      <div class="filters" data-filters data-reveal>
+        <button class="filter" type="button" aria-pressed="true" data-filter="all">All projects</button>
+        ${used.map((s) => html`<button class="filter" type="button" aria-pressed="false" data-filter="${s.slug}">${esc(s.short)}</button>`)}
+      </div>
+      <div class="work-grid" data-work-grid data-reveal-children>${projects.map(workCard)}</div>
     </div>
   </section>
-  ${ctaBand({ heading: 'Your business could be next.' })}
+  ${cta({ heading: 'Your business could be next.' })}
   `;
   return {
     path: '/work',
     title: 'Our Work: Website Case Studies | Roffey-Roberts Web',
-    description:
-      'Website, SEO and hosting case studies for businesses on the South Coast, including DMC Industrial Doors, Solwat Green Energy and Revitalise Hub.',
+    description: 'Website, SEO and hosting case studies for businesses on the South Coast, including DMC Industrial Doors, Solwat Green Energy and Revitalise Hub.',
     og: 'work',
-    ogTitle: 'Recent work',
+    ogTitle: 'Work that works.',
     schema: [breadcrumbs([['Home', '/'], ['Work', '/work']])],
     body,
   };
@@ -38,67 +45,71 @@ function projectPage(p, i) {
   const next = projects[(i + 1) % projects.length];
   const crumbs = [['Home', '/'], ['Work', '/work'], [p.name, `/work/${p.slug}`]];
   const body = html`
-  <section class="page-hero s-dark case-hero" aria-labelledby="page-title">
-    <div class="wrap">
-      ${breadcrumb(crumbs)}
-      <h1 class="page-title" id="page-title">${esc(p.name)}</h1>
-      <div class="page-hero-foot">
-        <p class="page-lede">${esc(p.summary)}</p>
+  <section class="page-hero" aria-labelledby="page-title">
+    ${aurora()}
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="wrap z">
+      <div class="page-hero-copy" data-reveal-children>
+        ${breadcrumb(crumbs)}
+        <h1 class="display h1 page-title" id="page-title">${esc(p.name)}</h1>
+        <p class="lede">${esc(p.summary)}</p>
         <dl class="case-meta">
           <div><dt>Sector</dt><dd>${esc(p.sector)}</dd></div>
           <div><dt>Location</dt><dd>${esc(p.location)}</dd></div>
-          <div><dt>Scope</dt><dd>${serviceLinks(p.scope)}</dd></div>
+          <div><dt>Scope</dt><dd>${esc(p.scopeLabel)}</dd></div>
           <div><dt>Live site</dt><dd><a href="${p.url}" rel="noopener" target="_blank">${esc(p.domain)}${icon.arrowUpRight}<span class="sr-only"> (opens in a new tab)</span></a></dd></div>
         </dl>
       </div>
-    </div>
-    <div class="wrap case-shot">${shot(p, { eager: true })}</div>
-  </section>
-
-  <section class="section s-white" aria-labelledby="brief-title">
-    <div class="wrap case-brief">
-      <h2 class="h2" id="brief-title">The brief</h2>
-      <div class="lead-block lead-block-tight">${p.brief.map((t) => html`<p>${esc(t)}</p>`)}</div>
+      <div class="case-shot z" data-reveal style="--d:0.15s">${browser(p)}</div>
     </div>
   </section>
 
-  <section class="section s-fog" aria-labelledby="built-title">
+  <section class="section" aria-labelledby="brief-title">
+    <div class="wrap two-col">
+      <div data-reveal><span class="eyebrow">The brief</span><h2 class="h2" id="brief-title" style="margin-top:16px">What they needed</h2></div>
+      <div class="lead-text" data-reveal>${p.brief.map((t) => html`<p>${esc(t)}</p>`)}</div>
+    </div>
+  </section>
+
+  <section class="section rel" aria-labelledby="built-title">
+    ${aurora(true)}
+    <div class="wrap z">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">What we built</span>
+        <h2 class="h2" id="built-title">Designed around how <span class="grad-text">customers choose.</span></h2>
+        <div class="pill-list" style="margin-top:8px">${p.scope.map((s) => html`<a href="/services/${s}">${serviceIcons[s]}${esc(serviceBySlug[s].name)}</a>`)}</div>
+      </div>
+      ${featureGrid(p.built, [icon.layout, icon.pin, icon.send, icon.phone, icon.shield, icon.server])}
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="search-title">
+    <div class="wrap tool-grid">
+      <div class="section-head" data-reveal style="margin:0">
+        <span class="eyebrow">In search</span>
+        <h2 class="h2" id="search-title">How it reads on Google.</h2>
+        <p class="lede">The homepage title leads with the services and the area customers search for, with the brand at the end.</p>
+      </div>
+      <div class="card card-pad" data-reveal>${serpCard({ name: p.name, domain: p.domain, title: p.searchTitle })}</div>
+    </div>
+  </section>
+
+  <section class="section section-tight" aria-labelledby="next-title">
     <div class="wrap">
-      <h2 class="h2 included-title" id="built-title">What we built</h2>
-      <ul class="included">
-        ${p.built.map(([t, d]) => html`<li><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section s-white" aria-labelledby="search-title">
-    <div class="wrap case-search">
-      <div>
-        <h2 class="h2" id="search-title">How it reads in search</h2>
-        <p>The homepage title leads with the services and the area customers search for, with the brand at the end.</p>
-      </div>
-      <div class="serp serp-static">
-        <div class="serp-site">
-          <span class="serp-fav" aria-hidden="true">${esc(p.name[0])}</span>
-          <span class="serp-source"><span>${esc(p.name)}</span><span>${esc(p.domain)}</span></span>
+      <a class="card card-hover next-card" href="/work/${next.slug}" data-spot data-cursor="View" data-reveal>
+        <div>
+          <p class="next-label" id="next-title">Next case study</p>
+          <p class="next-name">${esc(next.name)}</p>
+          <p class="muted" style="margin-top:12px">${esc(next.sector)}</p>
+          ${tags(next)}
+          <p class="link link-arrow" style="margin-top:22px">Read the case study${icon.arrowRight}</p>
         </div>
-        <p class="serp-title">${esc(p.searchTitle)}</p>
-      </div>
+        <div class="stack-shot" aria-hidden="true">${browser(next)}</div>
+      </a>
     </div>
   </section>
 
-  <section class="section s-dark next-project" aria-labelledby="next-title">
-    <div class="wrap next-grid">
-      <div>
-        <p class="next-label" id="next-title">Next case study</p>
-        <p class="next-name"><a href="/work/${next.slug}">${esc(next.name)}</a></p>
-        <p class="next-sector">${esc(next.sector)}</p>
-      </div>
-      <a class="project-shot" href="/work/${next.slug}" tabindex="-1" aria-hidden="true">${shot(next)}</a>
-    </div>
-  </section>
-
-  ${ctaBand()}
+  ${cta()}
   `;
 
   return {

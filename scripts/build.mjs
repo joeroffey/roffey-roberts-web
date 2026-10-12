@@ -9,6 +9,7 @@ import * as home from '../src/pages/home.mjs';
 import * as services from '../src/pages/services.mjs';
 import * as work from '../src/pages/work.mjs';
 import * as misc from '../src/pages/misc.mjs';
+import { projects } from '../src/data/work.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const out = join(root, 'dist');
@@ -24,6 +25,12 @@ const assetVersion = createHash('sha256')
   .update(readFileSync(join(staticDir, 'js/site.js')))
   .digest('hex')
   .slice(0, 10);
+
+// Real screenshots, when present, replace the drawn mockups: static/img/work/<slug>.{jpg,png,webp}
+for (const p of projects) {
+  const found = ['jpg', 'png', 'webp'].find((ext) => existsSync(join(staticDir, `img/work/${p.slug}.${ext}`)));
+  if (found) p.screenshot = `/img/work/${p.slug}.${found}`;
+}
 
 const all = [...home.pages(), ...services.pages(), ...work.pages(), ...misc.pages()];
 
