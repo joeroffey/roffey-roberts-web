@@ -44,7 +44,7 @@ function about() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['About', '/about']])}
-        <h1 class="display h1 page-title" id="page-title">A small studio, <span class="grad-text">on purpose.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">A small Hampshire web studio, <span class="grad-text">on purpose.</span></h1>
         <p class="lede">${esc(site.name)} is a web studio based in ${esc(site.base)}. We build websites for businesses that depend on them, then make sure they’re found and kept safe.</p>
       </div>
     </div>
@@ -58,6 +58,26 @@ function about() {
         <p>Usually it’s a mix of things handled by different people: a designer who has moved on, an SEO agency sending reports nobody reads, ads run by someone else, and nobody watching security at all. Each part is someone’s job, so the whole is nobody’s.</p>
         <p><strong>So we do the whole thing.</strong> We design and build the website, get it found, run the ads, and keep it secure and online, with one small team that can see how every part affects the rest.</p>
         <p>We’re deliberately small. You deal with the people designing and building your site, not an account manager, and we would rather do fewer projects properly than rush more.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="${site.founder.name.split(' ')[0].toLowerCase()}" aria-labelledby="people-title">
+    <div class="wrap two-col">
+      <div data-reveal><span class="eyebrow">Who you’ll work with</span><h2 class="h2" id="people-title" style="margin-top:16px">The person behind the work.</h2></div>
+      <div class="card card-pad person" data-reveal data-spot>
+        <span class="person-avatar" aria-hidden="true">${esc(site.founder.initials)}</span>
+        <div>
+          <h3 class="h3">${esc(site.founder.name)}</h3>
+          <p class="person-role">${esc(site.founder.role)}, ${esc(site.name)}</p>
+          <p>Joe designs and builds every site the studio ships, and runs the SEO, ads and hosting behind them. He comes from the trades the studio serves: alongside Roffey-Roberts he looks after the websites and marketing for a renewable energy installer and a family-run industrial door company on the South Coast, which is where the studio’s focus on calls, quotes and bookings comes from.</p>
+          <p>If you get in touch, Joe is who replies, who you’ll speak to on the first call, and who does the work.</p>
+          <div class="btn-row" style="margin-top:18px">
+            ${site.email && html`<a class="btn btn-ghost btn-sm" href="mailto:${esc(site.email)}">${icon.mail}${esc(site.email)}</a>`}
+            ${site.phone && html`<a class="btn btn-ghost btn-sm" href="tel:${esc(site.phoneHref || site.phone)}">${icon.phone}${esc(site.phone)}</a>`}
+            ${site.founder.linkedin && html`<a class="btn btn-ghost btn-sm" href="${esc(site.founder.linkedin)}" rel="me noopener">LinkedIn${icon.arrowUpRight}</a>`}
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -114,7 +134,8 @@ function contact() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Contact', '/contact']])}
-        <h1 class="display h1 page-title" id="page-title">Start a <span class="grad-text">project.</span></h1>
+        <span class="eyebrow">Contact us</span>
+        <h1 class="display h1 page-title" id="page-title">Let’s start your <span class="grad-text">project.</span></h1>
         <p class="lede">Tell us a bit about your business and what you need. We reply to every enquiry within one working day, with straight advice and a clear next step.</p>
       </div>
     </div>

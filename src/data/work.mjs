@@ -56,7 +56,7 @@ export const projects = [
       'A redesign for an MCS-certified heat pump and solar installer with more than 22 years’ experience, built around trust, real installations and the areas they cover.',
     title: 'Solwat Green Energy case study | Roffey-Roberts Web',
     description:
-      'Redesigning the website for Solwat Green Energy, an MCS-certified heat pump and solar installer in Lymington: clearer services, real installations and local SEO.',
+      'Redesigning the website for Solwat Green Energy, an MCS-certified heat pump and solar installer in Lymington: clearer services and local SEO.',
     brief: [
       'Solwat installs air and ground source heat pumps, solar PV, battery storage, EV chargers, solar thermal and air conditioning for homeowners, new build developers and businesses across Hampshire, Dorset and the South Coast.',
       'Buying a heat pump is a big, considered decision, and customers want proof before they call. The redesign needed to put accreditations, reviews and real installations front and centre, and help people find the right service for their home or project.',

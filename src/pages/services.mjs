@@ -2,7 +2,7 @@ import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs, faqSchema } from '../lib/layout.mjs';
 import { aurora, breadcrumb, cta, faqSection, featureGrid, serviceVisual, serviceIcons, serviceCard, timeline, workCard } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
-import { groups, services, servicesInGroup } from '../data/services.mjs';
+import { groups, services, servicesInGroup, serviceBySlug } from '../data/services.mjs';
 import { projectBySlug } from '../data/work.mjs';
 
 function servicePage(s) {
@@ -37,7 +37,7 @@ function servicePage(s) {
     <div class="wrap">
       <div class="two-col" style="margin-bottom:clamp(56px,7vw,96px)">
         <div data-reveal><span class="eyebrow">Why it matters</span></div>
-        <div class="lead-text" data-reveal>${s.intro.map((p) => html`<p>${esc(p)}</p>`)}</div>
+        <div class="lead-text" data-reveal>${s.intro.map((p) => html`<p>${esc(p)}</p>`)}<p>Most clients pair this with ${s.pairsWith.map((o, i) => html`${i ? ' and ' : ''}<a class="link-under" href="/services/${o}">${esc(serviceBySlug[o].name.toLowerCase().replace('seo', 'SEO').replace('google & meta', 'Google & Meta'))}</a>`)}.</p></div>
       </div>
       <div class="section-head" data-reveal>
         <span class="eyebrow">What’s included</span>
@@ -115,7 +115,8 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Services', '/services']])}
-        <h1 class="display h1 page-title" id="page-title">Six services. <span class="grad-text">One studio.</span></h1>
+        <span class="eyebrow">Six services, one studio</span>
+        <h1 class="display h1 page-title" id="page-title">Web design, SEO, ads, security and <span class="grad-text">hosting.</span></h1>
         <p class="lede">Everything a business website needs, from the first design to the ads that fill your diary and the security that keeps it all running. Use one service or all six; they’re designed to work together.</p>
         <div class="btn-row"><a class="btn btn-primary btn-lg" href="/contact" data-magnet>Start a project${icon.arrowRight}</a></div>
       </div>
@@ -141,7 +142,7 @@ function indexPage() {
 
   return {
     path: '/services',
-    title: 'Web Design, SEO, Ads, Security & Hosting | Roffey-Roberts Web',
+    title: 'Web Design, SEO, Ads & Hosting | Roffey-Roberts Web',
     description: 'Website design, SEO, digital marketing, Google and Meta ads, cyber security and managed hosting for small businesses in Hampshire and across the UK.',
     og: 'services',
     ogTitle: 'Six services. One studio.',

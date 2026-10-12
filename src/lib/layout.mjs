@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { html, esc, jsonLd, icon } from './html.mjs';
+import { html, esc, jsonLd, icon, iconSprite } from './html.mjs';
 import { site, nav } from '../data/site.mjs';
 import { services } from '../data/services.mjs';
 import { serviceIcons } from './components.mjs';
@@ -19,10 +19,36 @@ export const organization = {
   logo: `${site.url}/img/logo-512.png`,
   image: `${site.url}/img/og/home.png`,
   description: site.tagline,
-  areaServed: site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
-  knowsAbout: services.map((s) => s.name),
   ...(site.email && { email: site.email }),
-  ...(site.phone && { telephone: site.phone }),
+  ...(site.phone && { telephone: site.phoneHref || site.phone }),
+  address: {
+    '@type': 'PostalAddress',
+    ...(site.address.locality && { addressLocality: site.address.locality }),
+    addressRegion: site.address.region,
+    addressCountry: site.address.country,
+  },
+  areaServed: [
+    ...site.towns.map((name) => ({ '@type': 'City', name })),
+    ...site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
+  ],
+  priceRange: site.priceRange,
+  founder: {
+    '@type': 'Person',
+    '@id': `${site.url}/about#${site.founder.name.split(' ')[0].toLowerCase()}`,
+    name: site.founder.name,
+    jobTitle: site.founder.role,
+    worksFor: { '@id': `${site.url}/#organization` },
+    ...(site.founder.linkedin && { sameAs: [site.founder.linkedin] }),
+  },
+  knowsAbout: services.map((s) => s.name),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'sales',
+    ...(site.phone && { telephone: site.phoneHref || site.phone }),
+    ...(site.email && { email: site.email }),
+    areaServed: 'GB',
+    availableLanguage: 'en',
+  },
   ...(site.sameAs.length && { sameAs: site.sameAs }),
 };
 
@@ -70,6 +96,7 @@ function header(path) {
           )}
         </ul>
       </nav>
+      ${site.phone && html`<a class="btn btn-ghost btn-sm header-phone" href="tel:${esc(site.phoneHref || site.phone)}">${icon.phone}<span>${esc(site.phone)}</span></a>`}
       <a class="btn btn-primary btn-sm header-cta" href="/contact" data-magnet>Start a project${icon.arrowRight}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
         <span class="menu-open">${icon.menu}</span><span class="menu-close">${icon.close}</span><span class="sr-only">Menu</span>
@@ -84,6 +111,8 @@ function header(path) {
       ${services.map((s) => html`<li><a href="/services/${s.slug}">${serviceIcons[s.slug]}${esc(s.name)}</a></li>`)}
     </ul>
     <a class="btn btn-primary btn-lg" href="/contact" style="width:100%">Start a project${icon.arrowRight}</a>
+    ${site.phone && html`<a class="btn btn-ghost btn-lg" href="tel:${esc(site.phoneHref || site.phone)}" style="width:100%;margin-top:10px">${icon.phone}Call ${esc(site.phone)}</a>`}
+    ${site.email && html`<p class="mobile-email"><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></p>`}
   </div>`;
 }
 
@@ -108,6 +137,7 @@ function footer() {
           <ul>
             <li><a href="/work">Work</a></li>
             <li><a href="/about">About</a></li>
+            <li><a href="/web-design">Areas we cover</a></li>
             <li><a href="/contact">Contact</a></li>
             <li><a href="/privacy">Privacy</a></li>
           </ul>
@@ -124,7 +154,7 @@ function footer() {
         </div>
       </div>
       <div class="footer-base">
-        <p>© ${year} ${esc(site.name)}. ${esc(site.base)}, UK.</p>
+        <p>© ${year} ${esc(site.name)}. ${esc(site.base)}, UK.${site.phone && html` <a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a>`}</p>
         <p><a href="/privacy">Privacy</a>${hasTracking && html`<button type="button" data-consent-open>Cookie settings</button>`}<a href="/sitemap.xml">Sitemap</a></p>
       </div>
     </div>
@@ -189,7 +219,7 @@ ${trackingConfig}
 ${jsonLd(graph)}
 </head>
 <body class="${esc(bodyClass)}">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B49CFF"/><stop offset=".5" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B49CFF"/><stop offset=".5" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient>${iconSprite()}</defs></svg>
 ${header(path)}
 <main id="main" tabindex="-1">
 ${body}

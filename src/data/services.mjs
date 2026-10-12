@@ -23,6 +23,7 @@ export const groups = [
 export const services = [
   {
     slug: 'website-design',
+    pairsWith: ['seo', 'website-hosting'],
     noun: 'website',
     faqHeading: 'Website questions',
     group: 'build',
@@ -64,6 +65,7 @@ export const services = [
   },
   {
     slug: 'seo',
+    pairsWith: ['google-meta-ads', 'website-design'],
     noun: 'SEO',
     faqHeading: 'SEO questions',
     group: 'grow',
@@ -104,6 +106,7 @@ export const services = [
   },
   {
     slug: 'digital-marketing',
+    pairsWith: ['seo', 'google-meta-ads'],
     noun: 'marketing',
     faqHeading: 'Marketing questions',
     group: 'grow',
@@ -143,6 +146,7 @@ export const services = [
   },
   {
     slug: 'google-meta-ads',
+    pairsWith: ['seo', 'digital-marketing'],
     noun: 'ads',
     faqHeading: 'Ads questions',
     group: 'grow',
@@ -183,6 +187,7 @@ export const services = [
   },
   {
     slug: 'cyber-security',
+    pairsWith: ['website-hosting', 'website-design'],
     noun: 'security',
     faqHeading: 'Security questions',
     group: 'protect',
@@ -190,7 +195,7 @@ export const services = [
     short: 'Security',
     title: 'Cyber Security for Small Businesses | Roffey-Roberts Web',
     description:
-      'Practical cyber security for small businesses: website hardening, email protection (SPF, DKIM, DMARC), two-factor sign-in, backups and Cyber Essentials readiness.',
+      'Practical cyber security for small businesses: website hardening, email protection, two-factor sign-in, backups and Cyber Essentials readiness.',
     h1: 'Cyber security for small businesses',
     lede:
       'Practical protection for your website, email and accounts. We close the gaps attackers actually use against small businesses, and explain it all without the jargon.',
@@ -222,6 +227,7 @@ export const services = [
   },
   {
     slug: 'website-hosting',
+    pairsWith: ['cyber-security', 'website-design'],
     noun: 'hosting',
     faqHeading: 'Hosting questions',
     group: 'protect',

@@ -9,6 +9,7 @@ import * as home from '../src/pages/home.mjs';
 import * as services from '../src/pages/services.mjs';
 import * as work from '../src/pages/work.mjs';
 import * as misc from '../src/pages/misc.mjs';
+import * as areas from '../src/pages/areas.mjs';
 import { projects } from '../src/data/work.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
@@ -32,7 +33,7 @@ for (const p of projects) {
   if (found) p.screenshot = `/img/work/${p.slug}.${found}`;
 }
 
-const all = [...home.pages(), ...services.pages(), ...work.pages(), ...misc.pages()];
+const all = [...home.pages(), ...services.pages(), ...areas.pages(), ...work.pages(), ...misc.pages()];
 
 const fileFor = (path) => (path === '/' ? 'index.html' : `${path.slice(1)}.html`);
 
@@ -47,20 +48,32 @@ for (const p of all) {
   writeFileSync(file, page({ ...p, assetVersion }));
 }
 
-// Sitemap and robots
-const today = new Date().toISOString().slice(0, 10);
+// Sitemap and robots. No lastmod (it would only ever be the build date) and no priority (Google ignores it).
 const urls = all
   .filter((p) => !p.noindex && p.sitemap !== false)
-  .map((p) => {
-    const loc = `${site.url}${p.path === '/' ? '/' : p.path}`;
-    const priority = p.path === '/' ? '1.0' : p.path.split('/').length === 2 ? '0.8' : '0.7';
-    return `  <url><loc>${loc}</loc><lastmod>${today}</lastmod><priority>${priority}</priority></url>`;
-  });
+  .map((p) => `  <url><loc>${site.url}${p.path === '/' ? '/' : p.path}</loc></url>`);
 writeFileSync(
   join(out, 'sitemap.xml'),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join('\n')}\n</urlset>\n`
 );
 writeFileSync(join(out, 'robots.txt'), `User-agent: *\nAllow: /\nDisallow: /api/\n\nSitemap: ${site.url}/sitemap.xml\n`);
+
+// llms.txt: a plain-text guide to the site for AI search engines.
+writeFileSync(
+  join(out, 'llms.txt'),
+  [
+    `# ${site.name}`,
+    '',
+    `> ${site.tagline} Based in ${site.base}, UK, working across the South Coast and the rest of the UK.`,
+    '',
+    `Contact: ${site.email}${site.phone ? ` · ${site.phone}` : ''}`,
+    `Founder: ${site.founder.name}`,
+    '',
+    '## Pages',
+    ...all.filter((p) => !p.noindex && p.sitemap !== false).map((p) => `- [${p.title.replace(' | Roffey-Roberts Web', '')}](${site.url}${p.path === '/' ? '/' : p.path}): ${p.description}`),
+    '',
+  ].join('\n')
+);
 
 // Page list for OG image generation (scripts/og.mjs)
 writeFileSync(

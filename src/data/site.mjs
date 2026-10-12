@@ -2,7 +2,7 @@
 export const site = {
   name: 'Roffey-Roberts Web',
   shortName: 'Roffey-Roberts',
-  url: 'https://roffey-robertsweb.co.uk',
+  url: 'https://www.roffey-robertsweb.co.uk',
   locale: 'en_GB',
   tagline: 'Websites, SEO, ads, security and hosting for businesses that need their website to bring in work.',
   base: 'Hampshire',
@@ -10,9 +10,15 @@ export const site = {
   towns: ['Southampton', 'Portsmouth', 'Winchester', 'Bournemouth', 'Lymington', 'Ringwood'],
 
   // Contact details. Leave a value empty to hide it everywhere on the site.
-  email: '',
-  phone: '',
-  phoneHref: '',
+  email: 'info@roffey-robertsweb.co.uk',
+  phone: '07741 618140',
+  phoneHref: '+447741618140',
+
+  // Who runs the studio. Shown on the About page and in structured data.
+  founder: { name: 'Joe Roffey', role: 'Founder', initials: 'JR', linkedin: '' },
+  // Service-area business: region and country only, no street address published.
+  address: { locality: '', region: 'Hampshire', country: 'GB' },
+  priceRange: '££',
 
   // Social profiles, used in the footer and in structured data.
   sameAs: [],
@@ -30,6 +36,7 @@ export const site = {
 export const nav = [
   { label: 'Services', href: '/services' },
   { label: 'Work', href: '/work' },
+  { label: 'Areas', href: '/web-design' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
 ];

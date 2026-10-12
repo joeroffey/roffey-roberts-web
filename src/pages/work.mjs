@@ -14,7 +14,8 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Work', '/work']])}
-        <h1 class="display h1 page-title" id="page-title">Work that <span class="grad-text">works.</span></h1>
+        <span class="eyebrow">Work that works</span>
+        <h1 class="display h1 page-title" id="page-title">Website design case studies <span class="grad-text">from the South Coast.</span></h1>
         <p class="lede">Websites for installers, engineers and studios along the South Coast. Each one built to be found locally and to turn visits into calls, quotes and bookings.</p>
       </div>
     </div>
