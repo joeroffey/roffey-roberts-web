@@ -1,10 +1,11 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs } from '../lib/layout.mjs';
-import { aurora, breadcrumb, browser, cta, featureGrid, serpCard, workCard, serviceIcons, tags } from '../lib/components.mjs';
+import { aurora, breadcrumb, browser, cta, featureGrid, serpCard, workCard, serviceIcons, tags, resultsBlock, testimonialSection } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
 import { areaBySlug } from '../data/areas.mjs';
+import { testimonials } from '../data/testimonials.mjs';
 
 function indexPage() {
   const used = services.filter((s) => projects.some((p) => p.scope.includes(s.slug)));
@@ -85,6 +86,10 @@ function projectPage(p, i) {
       ${featureGrid(p.built, [icon.layout, icon.pin, icon.send, icon.phone, icon.shield, icon.server])}
     </div>
   </section>
+
+  ${resultsBlock(p.results || [])}
+
+  ${testimonialSection(testimonials.filter((t) => t.project === p.slug), { heading: `What ${p.name} said`, eyebrow: 'Client feedback' })}
 
   <section class="section" aria-labelledby="search-title">
     <div class="wrap tool-grid">

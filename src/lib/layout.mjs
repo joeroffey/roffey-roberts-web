@@ -28,6 +28,7 @@ export const organization = {
     addressRegion: site.address.region,
     addressCountry: site.address.country,
   },
+  ...(site.address.geo && { geo: { '@type': 'GeoCoordinates', latitude: site.address.geo.lat, longitude: site.address.geo.lon } }),
   areaServed: [
     ...site.towns.map((name) => ({ '@type': 'City', name })),
     ...site.areaServed.map((name) => ({ '@type': 'AdministrativeArea', name })),
@@ -39,7 +40,13 @@ export const organization = {
     name: site.founder.name,
     jobTitle: site.founder.role,
     worksFor: { '@id': `${site.url}/#organization` },
+    url: `${site.url}/about`,
+    ...(site.founder.photo && { image: `${site.url}${site.founder.photo}` }),
     ...(site.founder.linkedin && { sameAs: [site.founder.linkedin] }),
+    knowsAbout: services.map((s) => s.name),
+    ...(site.founder.credentials.length && {
+      hasCredential: site.founder.credentials.map((name) => ({ '@type': 'EducationalOccupationalCredential', name })),
+    }),
   },
   knowsAbout: services.map((s) => s.name),
   contactPoint: {
@@ -52,6 +59,19 @@ export const organization = {
   },
   ...(site.sameAs.length && { sameAs: site.sameAs }),
 };
+
+// Friendly footer labels for profile links.
+function profileLabel(u) {
+  const h = new URL(u).hostname.replace('www.', '');
+  if (h.includes('linkedin')) return 'LinkedIn';
+  if (h.includes('facebook')) return 'Facebook';
+  if (h.includes('instagram')) return 'Instagram';
+  if (h.includes('google') || h.includes('g.page')) return 'Google Business Profile';
+  if (h.includes('company-information') || h.includes('companieshouse')) return 'Companies House';
+  if (h.includes('x.com') || h.includes('twitter')) return 'X';
+  if (h.includes('youtube')) return 'YouTube';
+  return h;
+}
 
 export const breadcrumbs = (items) => ({
   '@type': 'BreadcrumbList',
@@ -157,7 +177,8 @@ function footer() {
             ${site.phone && html`<li><a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a></li>`}
             <li><a href="/contact">Send an enquiry</a></li>
             <li><a href="/contact?review=1">Free website review</a></li>
-            ${site.sameAs.map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(new URL(u).hostname.replace('www.', ''))}</a></li>`)}
+            ${site.reviewUrl && html`<li><a href="${esc(site.reviewUrl)}" rel="noopener">Review us on Google</a></li>`}
+            ${site.sameAs.map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(profileLabel(u))}</a></li>`)}
           </ul>
         </div>
       </div>

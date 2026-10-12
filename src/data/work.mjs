@@ -1,4 +1,5 @@
 // Case studies. Facts here are taken from the live sites; keep them accurate.
+// `results` stays empty until there is a real, measured figure to put in it.
 export const projects = [
   {
     slug: 'dmc-industrial-doors',
@@ -27,6 +28,8 @@ export const projects = [
       ['Trust up front', 'Experience, insurance, 24/7 cover and the fact it’s family-run all stated in the first screen, with a gallery of real installations.'],
       ['Fast, managed hosting', 'Hosted on a global edge network, with the domain and DNS managed alongside the site.'],
     ],
+    // Measured outcomes, once there are some to report, e.g. [['3×', 'more enquiries in the first quarter'], ['98', 'Lighthouse performance']].
+    results: [],
     searchTitle: 'Industrial Doors & Roller Shutters Hampshire & Dorset | DMC',
     mock: {
       variant: 'quote',
@@ -71,6 +74,8 @@ export const projects = [
       ['Grants and savings, sourced', 'Benefit messaging on the Boiler Upgrade Scheme and VAT relief, each linked to its source.'],
       ['Privacy-friendly maps', 'An embedded map that only loads Google content after the visitor agrees.'],
     ],
+    // Measured outcomes, once there are some to report, e.g. [['3×', 'more enquiries in the first quarter'], ['98', 'Lighthouse performance']].
+    results: [],
     searchTitle: 'Heat Pump & Solar Installers Hampshire & Dorset | Solwat',
     mock: {
       variant: 'services',
@@ -113,6 +118,8 @@ export const projects = [
       ['A growth plan', 'An audit covering the different customers, from homeowners after an install to landlords and people whose installer has gone, with messaging, an enquiry flow and a recurring service plan for each.'],
       ['Clear calls to action', 'Booking prompts and click-to-call in the header, the first screen and the footer.'],
     ],
+    // Measured outcomes, once there are some to report, e.g. [['3×', 'more enquiries in the first quarter'], ['98', 'Lighthouse performance']].
+    results: [],
     searchTitle: 'Heat Pump & Solar Servicing Hampshire & Dorset | Solwat',
     mock: {
       variant: 'areas',
@@ -155,6 +162,8 @@ export const projects = [
       ['First-visit questions answered', 'An FAQ covering what to bring, parking, beginners and health considerations.'],
       ['Careful changes on a live system', 'Design and SEO improvements made around the booking system and admin, which were left untouched.'],
     ],
+    // Measured outcomes, once there are some to report, e.g. [['3×', 'more enquiries in the first quarter'], ['98', 'Lighthouse performance']].
+    results: [],
     searchTitle: 'Ice Bath & Sauna Lymington | Contrast Therapy | Revitalise Hub',
     mock: {
       variant: 'booking',

@@ -212,3 +212,43 @@ export const serpCard = ({ name, domain, title, desc = '' }) => html`
     <p class="serp-title" data-serp-title>${esc(title)}</p>
     ${desc && html`<p class="serp-desc" data-serp-desc>${esc(desc)}</p>`}
   </div>`;
+
+// Testimonials: a row of quote cards. Renders nothing when the list is empty.
+export const testimonialSection = (items, { heading = 'What clients say', eyebrow = 'In their words' } = {}) =>
+  items.length
+    ? html`
+  <section class="section section-tight" aria-labelledby="testimonials-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">${esc(eyebrow)}</span>
+        <h2 class="h2" id="testimonials-title">${esc(heading)}</h2>
+      </div>
+      <div class="quote-grid" data-reveal-children>
+        ${items.map(
+          (t) => html`
+        <figure class="card card-pad quote" data-spot>
+          <blockquote><p>${esc(t.quote)}</p></blockquote>
+          <figcaption><b>${esc(t.name)}</b>${t.role && html`<span>${esc(t.role)}</span>`}${t.source === 'google' && html`<span class="quote-source">${icon.star}Google review</span>`}</figcaption>
+        </figure>`
+        )}
+      </div>
+    </div>
+  </section>`
+    : '';
+
+// Results: measured outcomes for a case study. Renders nothing when there are none.
+export const resultsBlock = (results) =>
+  results.length
+    ? html`
+  <section class="section section-tight" aria-labelledby="results-title">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">Results</span>
+        <h2 class="h2" id="results-title">What changed.</h2>
+      </div>
+      <div class="stats" data-reveal-children>
+        ${results.map(([n, text]) => html`<div class="card stat" data-spot><b>${esc(n)}</b><span>${esc(text)}</span></div>`)}
+      </div>
+    </div>
+  </section>`
+    : '';

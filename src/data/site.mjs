@@ -15,13 +15,24 @@ export const site = {
   phoneHref: '+447741618140',
 
   // Who runs the studio. Shown on the About page and in structured data.
-  founder: { name: 'Joe Roffey', role: 'Founder', initials: 'JR', linkedin: '' },
-  // Service-area business: region and country only, no street address published.
-  address: { locality: '', region: 'Hampshire', country: 'GB' },
+  founder: {
+    name: 'Joe Roffey',
+    role: 'Founder',
+    initials: 'JR',
+    linkedin: '', // e.g. https://www.linkedin.com/in/...
+    photo: '', // e.g. '/img/joe.jpg' (put the file in static/img/; square, at least 600px)
+    credentials: [], // e.g. ['Cyber Essentials certified', 'Google Ads Search certification']
+    bio: [], // extra paragraphs for the About page: experience, background
+  },
+  // Service-area business: no street address published. Set the base town and, optionally, its coordinates.
+  address: { locality: '', region: 'Hampshire', country: 'GB', geo: null /* e.g. { lat: 50.75, lon: -1.54 } */ },
   priceRange: '££',
 
-  // Social profiles, used in the footer and in structured data.
+  // Profiles for the organisation, used in the footer and in structured data (sameAs):
+  // Google Business Profile, LinkedIn company page, Facebook, Instagram, Companies House.
   sameAs: [],
+  // Google Business Profile "write a review" link. When set, a "Review us on Google" link appears in the footer and on About.
+  reviewUrl: '',
 
   // Search Console "HTML tag" verification: paste the content value of the meta tag Google gives you.
   verification: { google: '' },

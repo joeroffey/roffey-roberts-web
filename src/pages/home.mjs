@@ -1,7 +1,8 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { faqSchema } from '../lib/layout.mjs';
-import { aurora, cta, faqSection, serviceCard, stackCard, serpCard, timeline, browser, phone } from '../lib/components.mjs';
+import { aurora, cta, faqSection, serviceCard, stackCard, serpCard, timeline, browser, phone, testimonialSection } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
+import { testimonials } from '../data/testimonials.mjs';
 import { services } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
 
@@ -140,6 +141,8 @@ export function pages() {
       <p class="btn-row" style="margin-top:40px"><a class="btn btn-ghost" href="/work">All case studies${icon.arrowRight}</a></p>
     </div>
   </section>
+
+  ${testimonialSection(testimonials)}
 
   <section class="section rel" aria-labelledby="preview-title" data-nosnippet>
     ${aurora(true)}

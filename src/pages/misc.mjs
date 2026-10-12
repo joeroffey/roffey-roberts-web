@@ -66,16 +66,21 @@ function about() {
     <div class="wrap two-col">
       <div data-reveal><span class="eyebrow">Who you’ll work with</span><h2 class="h2" id="people-title" style="margin-top:16px">The person behind the work.</h2></div>
       <div class="card card-pad person" data-reveal data-spot>
-        <span class="person-avatar" aria-hidden="true">${esc(site.founder.initials)}</span>
+        ${site.founder.photo
+          ? html`<img class="person-photo" src="${esc(site.founder.photo)}" alt="${esc(site.founder.name)}, ${esc(site.founder.role.toLowerCase())} of ${esc(site.name)}" width="120" height="120" loading="lazy">`
+          : html`<span class="person-avatar" aria-hidden="true">${esc(site.founder.initials)}</span>`}
         <div>
           <h3 class="h3">${esc(site.founder.name)}</h3>
           <p class="person-role">${esc(site.founder.role)}, ${esc(site.name)}</p>
           <p>Joe designs and builds every site the studio ships, and runs the SEO, ads and hosting behind them. He comes from the trades the studio serves: alongside Roffey-Roberts he looks after the websites and marketing for a renewable energy installer and a family-run industrial door company on the South Coast, which is where the studio’s focus on calls, quotes and bookings comes from.</p>
+          ${site.founder.bio.map((t) => html`<p>${esc(t)}</p>`)}
           <p>If you get in touch, Joe is who replies, who you’ll speak to on the first call, and who does the work.</p>
+          ${site.founder.credentials.length ? html`<ul class="person-creds pill-list" aria-label="Credentials">${site.founder.credentials.map((c) => html`<li><span>${icon.check}${esc(c)}</span></li>`)}</ul>` : ''}
           <div class="btn-row" style="margin-top:18px">
             ${site.email && html`<a class="btn btn-ghost btn-sm" href="mailto:${esc(site.email)}">${icon.mail}${esc(site.email)}</a>`}
             ${site.phone && html`<a class="btn btn-ghost btn-sm" href="tel:${esc(site.phoneHref || site.phone)}">${icon.phone}${esc(site.phone)}</a>`}
             ${site.founder.linkedin && html`<a class="btn btn-ghost btn-sm" href="${esc(site.founder.linkedin)}" rel="me noopener">LinkedIn${icon.arrowUpRight}</a>`}
+            ${site.reviewUrl && html`<a class="btn btn-ghost btn-sm" href="${esc(site.reviewUrl)}" rel="noopener">${icon.star}Review us on Google</a>`}
           </div>
         </div>
       </div>

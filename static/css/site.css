@@ -786,3 +786,17 @@ select option { background: #10131D; color: var(--text); }
   .aurora span { animation: none; }
 }
 @media print { .site-header, .site-footer, .cta, .consent, .cursor, .cursor-ring, .scroll-progress { display: none !important; } body { background: #fff; color: #000; } }
+
+/* Testimonials */
+.quote-grid { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.quote blockquote { margin: 0; }
+.quote blockquote p { font-size: 1.08rem; line-height: 1.6; color: var(--text); }
+.quote blockquote p::before { content: "\201C"; color: var(--violet-2); font-family: var(--display); font-weight: 700; margin-right: 2px; }
+.quote figcaption { margin-top: 18px; display: grid; gap: 2px; font-size: 0.92rem; color: var(--text-2); }
+.quote figcaption b { color: var(--text); font-weight: 600; }
+.quote-source { display: inline-flex; align-items: center; gap: 6px; color: var(--text-3); font-size: 0.82rem; margin-top: 6px; }
+.quote-source .i { width: 14px; height: 14px; }
+.person-photo { width: 120px; height: 120px; border-radius: 28px; object-fit: cover; border: 1px solid var(--line); }
+.person-creds { list-style: none; margin: 16px 0 0; padding: 0; }
+.person-creds li span { display: inline-flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 999px; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line); color: var(--text-2); font-size: 0.875rem; font-weight: 500; }
+.person-creds .i { color: var(--mint); }
