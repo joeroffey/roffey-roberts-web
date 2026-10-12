@@ -14,6 +14,7 @@ Design: dark, luminous and dimensional. Bricolage Grotesque for headlines, Inter
 | Homepage | `src/pages/home.mjs` |
 | About, contact, privacy, 404 | `src/pages/misc.mjs` |
 | Header, footer, `<head>` and structured data | `src/lib/layout.mjs` |
+| Logo (the double-R monogram, one continuous line) | `src/data/logo-path.txt`, `static/logo.svg`, `static/favicon.svg` |
 | Styles | `static/css/site.css` |
 | Real screenshots of client sites (replace the drawn mockups) | `static/img/work/<slug>.jpg` |
 | Behaviour (menu, search preview, form, consent) | `static/js/site.js` |

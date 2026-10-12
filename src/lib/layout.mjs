@@ -4,8 +4,10 @@ import { site, nav } from '../data/site.mjs';
 import { services } from '../data/services.mjs';
 import { serviceIcons } from './components.mjs';
 
-const markSvg = readFileSync(new URL('../../static/favicon.svg', import.meta.url), 'utf8')
-  .replace('<svg ', '<svg class="mark" aria-hidden="true" focusable="false" ');
+const logoPath = readFileSync(new URL('../data/logo-path.txt', import.meta.url), 'utf8').trim();
+// The double-R monogram: one continuous line, so it can draw itself and carry a glint.
+const logo = (cls = '') => `<svg class="logo ${cls}" viewBox="0 0 70 64" aria-hidden="true" focusable="false"><path class="logo-line" d="${logoPath}" pathLength="100" fill="none" stroke="url(#logoGrad)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/><path class="logo-glint" d="${logoPath}" pathLength="100" fill="none" stroke="#fff" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+const markSvg = logo();
 
 const hasTracking = Object.entries(site.tracking).some(([k, v]) => k !== 'googleAdsLeadLabel' && v);
 
@@ -56,7 +58,7 @@ function header(path) {
   <div class="scroll-progress" aria-hidden="true" data-progress></div>
   <header class="site-header" data-header>
     <div class="nav-pill">
-      <a class="brand" href="/" aria-label="${esc(site.name)}, home">${markSvg}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
+      <a class="brand brand-main" href="/" aria-label="${esc(site.name)}, home">${logo("logo-draw")}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
       <nav class="nav" aria-label="Main">
         <ul class="nav-list">
           ${nav.map(
@@ -187,7 +189,7 @@ ${trackingConfig}
 ${jsonLd(graph)}
 </head>
 <body class="${esc(bodyClass)}">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient></defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient><linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#B49CFF"/><stop offset=".5" stop-color="#7C6CFF"/><stop offset="1" stop-color="#2EC5FF"/></linearGradient></defs></svg>
 ${header(path)}
 <main id="main" tabindex="-1">
 ${body}

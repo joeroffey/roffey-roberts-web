@@ -14,7 +14,7 @@ const pages = JSON.parse(readFileSync(join(root, 'scripts/.pages.json'), 'utf8')
 const font = `data:font/woff2;base64,${readFileSync(join(root, 'static/fonts/bricolage.woff2')).toString('base64')}`;
 const font2 = `data:font/woff2;base64,${readFileSync(join(root, 'static/fonts/inter.woff2')).toString('base64')}`;
 const mark = readFileSync(join(root, 'static/favicon.svg'), 'utf8');
-const markInverse = mark;
+const markInverse = readFileSync(join(root, 'static/logo.svg'), 'utf8');
 
 const base = `
   @font-face { font-family: A; src: url(${font}) format("woff2"); font-weight: 400 800; }
@@ -30,7 +30,7 @@ const card = (title, isHome) => `<!doctype html><html><head><style>${base}
   .wrap { position: relative; height: 100%; padding: 64px 72px; display: flex; flex-direction: column; }
   .brand { display: flex; align-items: center; gap: 16px; font-family: A; font-size: 30px; font-weight: 700; letter-spacing: -0.02em; }
   .brand span { color: #7D8699; font-weight: 600; }
-  .brand svg { width: 54px; height: 54px; border-radius: 14px; }
+  .brand svg { width: 60px; height: auto; filter: drop-shadow(0 0 14px rgba(124,108,255,.5)); }
   h1 { margin-top: auto; font-family: A; font-size: ${isHome ? 108 : title.length > 22 ? 90 : 112}px; font-weight: 700; line-height: 0.96; letter-spacing: -0.035em; max-width: 1060px; }
   .grad { background: linear-gradient(90deg, #B49CFF 0%, #7C6CFF 40%, #2EC5FF 100%); -webkit-background-clip: text; color: transparent; }
   .foot { display: flex; justify-content: space-between; align-items: baseline; margin-top: 44px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); font-size: 23px; color: #9AA3B8; }
