@@ -1,0 +1,36 @@
+name: Refresh case study screenshots
+
+# Takes a fresh homepage screenshot of each case-study site and commits it to static/img/work/.
+# Run it from the Actions tab whenever a client site changes; it also runs on the first Monday of each quarter.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 6 1 1,4,7,10 *'
+
+permissions:
+  contents: write
+
+jobs:
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright and sharp
+        run: |
+          npm init -y >/dev/null
+          npm i --no-save playwright sharp
+          npx playwright install --with-deps chromium
+      - name: Capture screenshots
+        run: node scripts/screenshots.mjs
+      - name: Commit any changes
+        run: |
+          rm -f package.json package-lock.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add static/img/work/*.webp
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Refresh case study screenshots"
+          git push

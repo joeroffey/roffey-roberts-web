@@ -62,7 +62,7 @@ function mockMarkup(p, mobile = false) {
 
 export function browser(p, { mobile = false } = {}) {
   const screen = p.screenshot
-    ? html`<img src="${p.screenshot}" alt="" loading="lazy" decoding="async" width="1440" height="936">`
+    ? html`<img src="${p.screenshot}" alt="${esc(p.name)} homepage, designed and built by Roffey-Roberts Web" loading="lazy" decoding="async" width="1440" height="936">`
     : mockMarkup(p, mobile);
   return html`
   <div class="browser" aria-hidden="true">
