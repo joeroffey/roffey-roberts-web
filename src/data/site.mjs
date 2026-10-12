@@ -30,9 +30,9 @@ export const site = {
 
   // Profiles for the organisation, used in the footer and in structured data (sameAs):
   // Google Business Profile, LinkedIn company page, Facebook, Instagram, Companies House.
-  sameAs: [],
+  sameAs: ['https://share.google/eN9iDHEnqVRrYMX8C'], // Google Business Profile
   // Google Business Profile "write a review" link. When set, a "Review us on Google" link appears in the footer and on About.
-  reviewUrl: '',
+  reviewUrl: 'https://share.google/eN9iDHEnqVRrYMX8C', // swap for the GBP "Ask for reviews" link when you have it
 
   // Search Console "HTML tag" verification: paste the content value of the meta tag Google gives you.
   verification: { google: '' },
