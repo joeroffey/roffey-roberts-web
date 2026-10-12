@@ -23,6 +23,9 @@ export const site = {
   // Social profiles, used in the footer and in structured data.
   sameAs: [],
 
+  // Search Console "HTML tag" verification: paste the content value of the meta tag Google gives you.
+  verification: { google: '' },
+
   // Tracking IDs. Leave empty and no tracking code or cookie banner is added.
   // When any ID is set, a consent banner appears and nothing loads until a visitor accepts.
   tracking: {

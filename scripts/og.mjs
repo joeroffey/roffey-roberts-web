@@ -1,7 +1,7 @@
 // Generates social share images (1200×630) and app icons into static/img/.
 // Run locally after `node scripts/build.mjs`: needs Playwright with Chromium installed
 // (`npm i -g playwright && npx playwright install chromium`).
-import { readFileSync, mkdirSync } from 'node:fs';
+import { writeFileSync, readFileSync, mkdirSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -61,10 +61,31 @@ for (const p of pages) {
   console.log('og', p.og);
 }
 
-for (const [file, size, padded] of [['favicon-32.png', 32, false], ['apple-touch-icon.png', 180, true], ['img/icon-192.png', 192, true], ['img/icon-512.png', 512, true], ['img/logo-512.png', 512, false]]) {
+// favicon-96.png is a multiple of 48px, which Google requires for the icon it shows in search results.
+for (const [file, size, padded] of [['favicon-96.png', 96, false], ['apple-touch-icon.png', 180, true], ['img/icon-192.png', 192, true], ['img/icon-512.png', 512, true], ['img/logo-512.png', 512, false]]) {
   await page.setViewportSize({ width: size, height: size });
   await page.setContent(icon(size, padded), { waitUntil: 'load' });
   await page.screenshot({ path: join(root, 'static', file), omitBackground: !padded });
   console.log('icon', file);
 }
+
+// favicon.ico: 16, 32 and 48px PNG frames packed in the ICO container (valid in every modern browser and for Google).
+const frames = [];
+for (const size of [16, 32, 48]) {
+  await page.setViewportSize({ width: size, height: size });
+  await page.setContent(icon(size, false), { waitUntil: 'load' });
+  frames.push([size, await page.screenshot({ omitBackground: true })]);
+}
+const header = Buffer.alloc(6);
+header.writeUInt16LE(0, 0); header.writeUInt16LE(1, 2); header.writeUInt16LE(frames.length, 4);
+const dir = [], data = [];
+let offset = 6 + 16 * frames.length;
+for (const [size, png] of frames) {
+  const e = Buffer.alloc(16);
+  e.writeUInt8(size === 256 ? 0 : size, 0); e.writeUInt8(size === 256 ? 0 : size, 1); e.writeUInt8(0, 2); e.writeUInt8(0, 3);
+  e.writeUInt16LE(1, 4); e.writeUInt16LE(32, 6); e.writeUInt32LE(png.length, 8); e.writeUInt32LE(offset, 12);
+  dir.push(e); data.push(png); offset += png.length;
+}
+writeFileSync(join(root, 'static/favicon.ico'), Buffer.concat([header, ...dir, ...data]));
+console.log('icon favicon.ico');
 await browser.close();

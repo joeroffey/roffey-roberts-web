@@ -219,7 +219,7 @@ export function page({ path, title, description, body, schema = [], og = 'home',
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 ${googleTag()}<title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${canonical}">
+${site.verification.google ? `<meta name="google-site-verification" content="${esc(site.verification.google)}">\n` : ''}<link rel="canonical" href="${canonical}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="${esc(site.name)}">
@@ -234,8 +234,9 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#07080D">
 <meta name="color-scheme" content="dark">
+<link rel="icon" href="/favicon.ico" sizes="48x48">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-96.png" sizes="96x96" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/fonts/bricolage.woff2" as="font" type="font/woff2" crossorigin>
