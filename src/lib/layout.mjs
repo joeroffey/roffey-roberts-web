@@ -175,6 +175,34 @@ function consentBanner() {
   </div>`;
 }
 
+// The Google tag, as Google supplies it, with Consent Mode v2 in front of it.
+// It loads on every page so Google can detect it, but in the default "denied"
+// state it sets no cookies; the banner in site.js upgrades consent to "granted".
+// The inline script's SHA-256 must appear in the Content-Security-Policy in vercel.json.
+export function googleTagInline() {
+  const ids = [site.tracking.ga4, site.tracking.googleAds].filter(Boolean);
+  if (!ids.length) return '';
+  return `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('consent', 'default', {'ad_storage':'denied','analytics_storage':'denied','ad_user_data':'denied','ad_personalization':'denied','wait_for_update':500});
+  try{if(localStorage.getItem('rrw_consent')==='granted')gtag('consent','update',{'ad_storage':'granted','analytics_storage':'granted','ad_user_data':'granted','ad_personalization':'granted'})}catch(e){}
+  gtag('js', new Date());
+
+${ids.map((id) => `  gtag('config', '${id}');`).join('\n')}
+`;
+}
+
+function googleTag() {
+  const inline = googleTagInline();
+  if (!inline) return '';
+  const id = site.tracking.ga4 || site.tracking.googleAds;
+  return `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${id}"></script>
+<script>${inline}</script>
+`;
+}
+
 export function page({ path, title, description, body, schema = [], og = 'home', noindex = false, bodyClass = '', assetVersion = '' }) {
   const canonical = `${site.url}${path === '/' ? '/' : path}`;
   const ogImage = `${site.url}/img/og/${og}.png`;
@@ -189,7 +217,7 @@ export function page({ path, title, description, body, schema = [], og = 'home',
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>${esc(title)}</title>
+${googleTag()}<title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${canonical}">
 ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robots" content="index, follow, max-image-preview:large">'}

@@ -3,7 +3,7 @@ import { mkdirSync, rmSync, writeFileSync, readFileSync, cpSync, existsSync } fr
 import { dirname, join } from 'node:path';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
-import { page } from '../src/lib/layout.mjs';
+import { page, googleTagInline } from '../src/lib/layout.mjs';
 import { site } from '../src/data/site.mjs';
 import * as home from '../src/pages/home.mjs';
 import * as services from '../src/pages/services.mjs';
@@ -82,4 +82,11 @@ writeFileSync(
 );
 
 if (!existsSync(join(out, 'img/og/home.png'))) console.warn('! OG images missing: run `node scripts/og.mjs` locally with Playwright.');
+
+// The inline Google tag must be allowed by the CSP in vercel.json, or browsers will block it.
+const inline = googleTagInline();
+if (inline) {
+  const hash = `sha256-${createHash('sha256').update(inline).digest('base64')}`;
+  if (!readFileSync(join(root, 'vercel.json'), 'utf8').includes(hash)) console.warn(`! CSP: add '${hash}' to script-src in vercel.json (the inline Google tag changed).`);
+}
 console.log(`Built ${all.length} pages into dist/ (assets v${assetVersion})`);

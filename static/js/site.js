@@ -230,26 +230,18 @@
     render();
   }
 
-  /* ---------- Tracking (only when IDs are configured) ---------- */
-  var trackingEl = doc.getElementById('rrw-tracking'), tracking = null, trackingLoaded = false;
+  /* ---------- Consent + tracking (only when IDs are configured) ----------
+     The Google tag itself is in <head> (see layout.mjs) with Consent Mode
+     defaulting to "denied", so it runs cookieless until the visitor accepts.
+     This block handles the banner, consent updates and the Meta pixel. */
+  var trackingEl = doc.getElementById('rrw-tracking'), tracking = null, pixelLoaded = false;
   if (trackingEl) { try { tracking = JSON.parse(trackingEl.textContent); } catch (e) { tracking = null; } }
-  var loadScript = function (src) { var s = doc.createElement('script'); s.async = true; s.src = src; doc.head.appendChild(s); };
+  var consentState = function (v) { return { ad_storage: v, analytics_storage: v, ad_user_data: v, ad_personalization: v }; };
   if (tracking) {
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function () { window.dataLayer.push(arguments); };
-    window.gtag('consent', 'default', { ad_storage: 'denied', analytics_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500 });
-    var startTracking = function () {
-      if (trackingLoaded) return;
-      trackingLoaded = true;
-      window.gtag('consent', 'update', { ad_storage: 'granted', analytics_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted' });
-      var gid = tracking.ga4 || tracking.googleAds;
-      if (gid) {
-        loadScript('https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(gid));
-        window.gtag('js', new Date());
-        if (tracking.ga4) window.gtag('config', tracking.ga4);
-        if (tracking.googleAds) window.gtag('config', tracking.googleAds);
-      }
-      if (tracking.metaPixel) {
+    var applyConsent = function (granted) {
+      if (window.gtag) window.gtag('consent', 'update', consentState(granted ? 'granted' : 'denied'));
+      if (granted && tracking.metaPixel && !pixelLoaded) {
+        pixelLoaded = true;
         (function (f, b, e, v, n, t, s) {
           if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
           if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
@@ -260,7 +252,7 @@
       }
     };
     var banner = $('[data-consent]'), choice = store.get('rrw_consent');
-    if (choice === 'granted') startTracking();
+    if (choice === 'granted') applyConsent(true);
     else if (!choice && banner) banner.hidden = false;
     doc.addEventListener('click', function (e) {
       var btn = e.target.closest('[data-consent-choice]');
@@ -268,13 +260,15 @@
         var value = btn.getAttribute('data-consent-choice');
         store.set('rrw_consent', value);
         if (banner) banner.hidden = true;
-        if (value === 'granted') startTracking(); else if (trackingLoaded) window.location.reload();
+        if (value === 'granted') applyConsent(true);
+        else if (pixelLoaded) window.location.reload();
+        else applyConsent(false);
       }
       if (e.target.closest('[data-consent-open]') && banner) { banner.hidden = false; banner.querySelector('button').focus(); }
     });
   }
   var trackLead = function () {
-    if (!tracking || !trackingLoaded) return;
+    if (!tracking) return;
     if (window.gtag) {
       window.gtag('event', 'generate_lead', { method: 'enquiry_form' });
       if (tracking.googleAds && tracking.googleAdsLeadLabel) window.gtag('event', 'conversion', { send_to: tracking.googleAds + '/' + tracking.googleAdsLeadLabel });
