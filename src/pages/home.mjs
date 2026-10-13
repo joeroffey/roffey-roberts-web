@@ -69,7 +69,7 @@ export function pages() {
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z hero-grid">
       <div class="hero-copy" data-reveal-children>
-        <span class="eyebrow eyebrow-live">${esc(site.base)} web studio · Now booking new projects</span>
+        <span class="eyebrow eyebrow-live"><span>${esc(site.base)} web studio<span class="eyebrow-long"> · Now booking new projects</span><span class="eyebrow-short"> · Booking now</span></span></span>
         <h1 class="display hero-title" id="hero-title">Websites that <span class="grad-text">win you work.</span><span class="h1-sub">Web design, SEO and ads for businesses in Hampshire and across the UK.</span></h1>
         <p class="lede hero-lede">We build your website by hand, get it found on Google, run the ads that fill your diary, and keep the whole thing secure and online. One studio, the whole job.</p>
         <div class="btn-row">
