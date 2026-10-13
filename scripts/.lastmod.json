@@ -1,114 +1,114 @@
 {
  "/": {
-  "hash": "27fa29c0c59ac291",
-  "date": "2026-10-12"
+  "hash": "76cbff1d8f111166",
+  "date": "2026-10-13"
  },
  "/services": {
-  "hash": "94011310a3bba4f8",
-  "date": "2026-10-12"
+  "hash": "38eb61472814f926",
+  "date": "2026-10-13"
  },
  "/services/website-design": {
-  "hash": "43c29b6f176997e8",
-  "date": "2026-10-12"
+  "hash": "63c9da7e6de855dd",
+  "date": "2026-10-13"
  },
  "/services/seo": {
-  "hash": "3fe0044fe9d60ffb",
-  "date": "2026-10-12"
+  "hash": "5eced69b1e0af198",
+  "date": "2026-10-13"
  },
  "/services/digital-marketing": {
-  "hash": "a864d716d4afc64e",
-  "date": "2026-10-12"
+  "hash": "8582b43c9659dab3",
+  "date": "2026-10-13"
  },
  "/services/google-meta-ads": {
-  "hash": "be82f40102335d17",
-  "date": "2026-10-12"
+  "hash": "cb7c7cc59c3a05e7",
+  "date": "2026-10-13"
  },
  "/services/cyber-security": {
-  "hash": "235d3510584dfd4f",
-  "date": "2026-10-12"
+  "hash": "436c9776ca1c58a3",
+  "date": "2026-10-13"
  },
  "/services/website-hosting": {
-  "hash": "cb4586939b022522",
-  "date": "2026-10-12"
+  "hash": "8f0bff7b261ce705",
+  "date": "2026-10-13"
  },
  "/web-design": {
-  "hash": "700a1a20e79f62fc",
-  "date": "2026-10-12"
+  "hash": "0ca5a55113b961a9",
+  "date": "2026-10-13"
  },
  "/web-design/southampton": {
-  "hash": "c2d0ca12de1b8f55",
-  "date": "2026-10-12"
+  "hash": "18f5a815bde1a272",
+  "date": "2026-10-13"
  },
  "/web-design/portsmouth": {
-  "hash": "fbbcf58a0cf5864a",
-  "date": "2026-10-12"
+  "hash": "d8b92e935397a988",
+  "date": "2026-10-13"
  },
  "/web-design/winchester": {
-  "hash": "2d85b2ea3ba806d0",
-  "date": "2026-10-12"
+  "hash": "e11a091a8439017e",
+  "date": "2026-10-13"
  },
  "/web-design/bournemouth": {
-  "hash": "2a623998f9ebbe35",
-  "date": "2026-10-12"
+  "hash": "4b91d4ae4b2546d8",
+  "date": "2026-10-13"
  },
  "/web-design/lymington-new-forest": {
-  "hash": "6a2bab8aea8f5b08",
-  "date": "2026-10-12"
+  "hash": "48d2119060185b55",
+  "date": "2026-10-13"
  },
  "/work": {
-  "hash": "c2ce8374fef74590",
-  "date": "2026-10-12"
+  "hash": "171578452bbaa32c",
+  "date": "2026-10-13"
  },
  "/work/dmc-industrial-doors": {
-  "hash": "4a1efb9ad7857332",
-  "date": "2026-10-12"
+  "hash": "1f266fdb016e84db",
+  "date": "2026-10-13"
  },
  "/work/solwat-green-energy": {
-  "hash": "51d52ff56f214160",
-  "date": "2026-10-12"
+  "hash": "e75d6f00f7ac0e4d",
+  "date": "2026-10-13"
  },
  "/work/solwat-green-maintenance": {
-  "hash": "2c8eafd8bc29ca2d",
-  "date": "2026-10-12"
+  "hash": "c4d862b448582c25",
+  "date": "2026-10-13"
  },
  "/work/revitalise-hub": {
-  "hash": "01dd3bbec8955213",
-  "date": "2026-10-12"
+  "hash": "2953723138856a91",
+  "date": "2026-10-13"
  },
  "/about": {
-  "hash": "2430eccdc70d88d5",
-  "date": "2026-10-12"
+  "hash": "403a15cffbac9daf",
+  "date": "2026-10-13"
  },
  "/contact": {
-  "hash": "7a916fa760420dbc",
-  "date": "2026-10-12"
+  "hash": "fe7c50dc789a8a94",
+  "date": "2026-10-13"
  },
  "/privacy": {
-  "hash": "c088bb8116fd72d2",
-  "date": "2026-10-12"
+  "hash": "bef1de9bd53dbccc",
+  "date": "2026-10-13"
  },
  "/404": {
-  "hash": "b5068b21f2261d18",
-  "date": "2026-10-12"
+  "hash": "64d277511f849e61",
+  "date": "2026-10-13"
  },
  "/guides": {
-  "hash": "550acf1f815dd785",
-  "date": "2026-10-12"
+  "hash": "d0aad861352747b7",
+  "date": "2026-10-13"
  },
  "/guides/how-much-does-a-website-cost-uk": {
-  "hash": "eb61ba11d76dc6b8",
-  "date": "2026-10-12"
+  "hash": "e5326688dde4f097",
+  "date": "2026-10-13"
  },
  "/guides/local-seo-for-trades": {
-  "hash": "9e4ee256340f6a0b",
-  "date": "2026-10-12"
+  "hash": "d0162554ddad44de",
+  "date": "2026-10-13"
  },
  "/guides/google-ads-vs-meta-ads": {
-  "hash": "6124ef642a94a316",
-  "date": "2026-10-12"
+  "hash": "71802515f710f1ac",
+  "date": "2026-10-13"
  },
  "/guides/cyber-essentials-explained": {
-  "hash": "9bcc66214f13678b",
-  "date": "2026-10-12"
+  "hash": "e81de2ed219419bf",
+  "date": "2026-10-13"
  }
 }

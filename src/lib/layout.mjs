@@ -178,7 +178,7 @@ function footer() {
             <li><a href="/contact">Send an enquiry</a></li>
             <li><a href="/contact?review=1">Free website review</a></li>
             ${site.reviewUrl && html`<li><a href="${esc(site.reviewUrl)}" rel="noopener">Review us on Google</a></li>`}
-            ${site.sameAs.map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(profileLabel(u))}</a></li>`)}
+            ${site.sameAs.filter((u, i, arr) => arr.findIndex((o) => profileLabel(o) === profileLabel(u)) === i).map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(profileLabel(u))}</a></li>`)}
           </ul>
         </div>
       </div>
