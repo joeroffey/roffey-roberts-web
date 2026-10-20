@@ -38,7 +38,7 @@ const card = (title, isHome) => `<!doctype html><html><head><style>${base}
 </style></head><body><span class="glow g1"></span><span class="glow g2"></span><span class="dots"></span><div class="wrap">
   <div class="brand">${markInverse}<div>Roffey-Roberts <span>Web</span></div></div>
   <h1>${title}</h1>
-  <div class="foot"><span>Websites, SEO, ads, security and hosting</span><b>roffey-robertsweb.co.uk</b></div>
+  <div class="foot"><span>Websites, marketing, cyber security, IT and hosting</span><b>roffey-robertsweb.co.uk</b></div>
 </div></body></html>`;
 
 const icon = (size, padded) => `<!doctype html><html><head><style>* { margin: 0 } body { width: ${size}px; height: ${size}px; background: ${padded ? '#07080D' : 'transparent'}; }
@@ -53,7 +53,7 @@ for (const p of pages) {
   if (done.has(p.og)) continue;
   done.add(p.og);
   const isHome = p.og === 'home';
-  const title = isHome ? 'Websites that<br><span class="grad">win you work.</span>' : (p.ogTitle || '').replace(/&/g, '&amp;').replace(/<span class="grad-text">/g, '<span class="grad">');
+  const title = isHome ? 'Websites and IT that<br><span class="grad">just work.</span>' : (p.ogTitle || '').replace(/&/g, '&amp;').replace(/<span class="grad-text">/g, '<span class="grad">');
   if (!title) continue;
   await page.setContent(card(title, isHome), { waitUntil: 'load' });
   await page.evaluate(() => document.fonts.ready);

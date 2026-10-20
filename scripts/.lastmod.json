@@ -1,146 +1,150 @@
 {
  "/": {
-  "hash": "41643ed995e9d2f7",
+  "hash": "a3a934bd98fb70e0",
   "date": "2026-10-20"
  },
  "/services": {
-  "hash": "14358864ade1d04e",
+  "hash": "726c754bcd0cb0a2",
   "date": "2026-10-20"
  },
  "/services/website-design": {
-  "hash": "747e44a41530c8bd",
+  "hash": "1ff57807fd3df4c0",
   "date": "2026-10-20"
  },
  "/services/seo": {
-  "hash": "3eecd1ca9b5599ae",
+  "hash": "b5dcc7aeff08abed",
   "date": "2026-10-20"
  },
  "/services/digital-marketing": {
-  "hash": "c901b924a0aa7ceb",
+  "hash": "163205aa1070c34e",
   "date": "2026-10-20"
  },
  "/services/google-meta-ads": {
-  "hash": "ee4ee53899f9ab29",
+  "hash": "f36c384de9d4efda",
   "date": "2026-10-20"
  },
  "/services/cyber-security": {
-  "hash": "19332be31208a0ae",
+  "hash": "71dd2e771278ee0e",
   "date": "2026-10-20"
  },
  "/services/website-hosting": {
-  "hash": "b54c50a3d978d612",
+  "hash": "da5504951123b836",
   "date": "2026-10-20"
  },
  "/web-design": {
-  "hash": "8414f4dca7fc8f17",
+  "hash": "2d320000cd6a4acb",
   "date": "2026-10-20"
  },
  "/web-design/southampton": {
-  "hash": "48bd5c1f3c64bf54",
+  "hash": "31e4dc97c6f6303b",
   "date": "2026-10-20"
  },
  "/web-design/portsmouth": {
-  "hash": "3f5b99542dd1bd80",
+  "hash": "d306646c900daba6",
   "date": "2026-10-20"
  },
  "/web-design/winchester": {
-  "hash": "cc366477007cbf81",
+  "hash": "3e035f0116f35f22",
   "date": "2026-10-20"
  },
  "/web-design/bournemouth": {
-  "hash": "f36bd3b7c983b2c1",
+  "hash": "8a3e1a6e02657b83",
   "date": "2026-10-20"
  },
  "/web-design/lymington-new-forest": {
-  "hash": "bc593c065d290ced",
+  "hash": "e37cb9558540a14c",
   "date": "2026-10-20"
  },
  "/work": {
-  "hash": "64bcf2bcbd1767b5",
+  "hash": "35b9a4a4fcb520fb",
   "date": "2026-10-20"
  },
  "/work/dmc-industrial-doors": {
-  "hash": "10a1fcde890ce871",
+  "hash": "58ad7117cfa47846",
   "date": "2026-10-20"
  },
  "/work/solwat-green-energy": {
-  "hash": "4cb1bd8e7173b74a",
+  "hash": "7ffc73189116043f",
   "date": "2026-10-20"
  },
  "/work/solwat-green-maintenance": {
-  "hash": "4dbb9908755a2fca",
+  "hash": "199e5f5dfb6c6f73",
   "date": "2026-10-20"
  },
  "/work/revitalise-hub": {
-  "hash": "66da38f51a151f52",
+  "hash": "70470036624c4c9c",
   "date": "2026-10-20"
  },
  "/about": {
-  "hash": "660911d724ad6d91",
+  "hash": "4fd418c44b6b7d09",
   "date": "2026-10-20"
  },
  "/contact": {
-  "hash": "f804fc29d1b8bfc0",
+  "hash": "4db225704925a779",
   "date": "2026-10-20"
  },
  "/privacy": {
-  "hash": "50c889220a228d0d",
+  "hash": "006cc4a23415e630",
   "date": "2026-10-20"
  },
  "/404": {
-  "hash": "14469d7bbd8ec370",
+  "hash": "c4614233b09b27e7",
   "date": "2026-10-20"
  },
  "/guides": {
-  "hash": "38485082e891e66a",
+  "hash": "ab4f430102c8bf91",
   "date": "2026-10-20"
  },
  "/guides/how-much-does-a-website-cost-uk": {
-  "hash": "5554653d7174c470",
+  "hash": "cf939e0530ba117c",
   "date": "2026-10-20"
  },
  "/guides/local-seo-for-trades": {
-  "hash": "16cbb70170a36aeb",
+  "hash": "4df9a4fa3d9d1cff",
   "date": "2026-10-20"
  },
  "/guides/google-ads-vs-meta-ads": {
-  "hash": "4dccc263df977fe2",
+  "hash": "b986b2a132964775",
   "date": "2026-10-20"
  },
  "/guides/cyber-essentials-explained": {
-  "hash": "795b3d157702ae53",
+  "hash": "73d53039507d70ba",
   "date": "2026-10-20"
  },
  "/services/cyber-security/security-audit": {
-  "hash": "1a9b6eb0927a24db",
+  "hash": "9d15be0e55d471f5",
   "date": "2026-10-20"
  },
  "/services/cyber-security/cyber-essentials": {
-  "hash": "9096e9a9368a58fb",
+  "hash": "d2136fb266baebbe",
   "date": "2026-10-20"
  },
  "/services/cyber-security/microsoft-365-google-workspace-security": {
-  "hash": "c992d36dfc2c0990",
+  "hash": "1fa19cae8b9d3d75",
   "date": "2026-10-20"
  },
  "/services/cyber-security/email-security": {
-  "hash": "7fcb2dc62677521d",
+  "hash": "3152898d94d8769e",
   "date": "2026-10-20"
  },
  "/services/cyber-security/device-and-network-security": {
-  "hash": "eb7c54a7d21029e4",
+  "hash": "a9f334f4caa8ee3f",
   "date": "2026-10-20"
  },
  "/services/cyber-security/backup-and-recovery": {
-  "hash": "1558a639e6b59f11",
+  "hash": "ad8006f76b6ce95c",
   "date": "2026-10-20"
  },
  "/services/cyber-security/staff-security-training": {
-  "hash": "653c67adee3fe54e",
+  "hash": "4fd2fd4e919d0969",
   "date": "2026-10-20"
  },
  "/services/cyber-security/incident-response": {
-  "hash": "4e4a19c35833f38e",
+  "hash": "d520e51d8aabcd58",
+  "date": "2026-10-20"
+ },
+ "/services/it-support": {
+  "hash": "77839a8394b18450",
   "date": "2026-10-20"
  }
 }

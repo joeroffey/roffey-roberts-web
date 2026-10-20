@@ -146,7 +146,7 @@ function footer() {
       <div class="footer-grid">
         <div class="footer-brand">
           <a class="brand" href="/" aria-label="${esc(site.name)}, home">${markSvg}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
-          <p>A ${esc(site.base)} web studio. Websites, SEO, marketing, ads, security and hosting for businesses across the South Coast and the UK.</p>
+          <p>A ${esc(site.base)} web and IT studio. Websites, SEO, marketing, ads, cyber security, IT support and hosting for businesses across the South Coast and the UK.</p>
           <a class="btn btn-ghost btn-sm" href="/contact" style="justify-self:start">Start a project${icon.arrowRight}</a>
         </div>
         <nav class="footer-col" aria-label="Services">

@@ -136,9 +136,9 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Services', '/services']])}
-        <span class="eyebrow">Six services, one studio</span>
-        <h1 class="display h1 page-title" id="page-title">Web design, SEO, ads, security and <span class="grad-text">hosting.</span></h1>
-        <p class="lede">Everything a business website needs, from the first design to the ads that fill your diary and the security that keeps it all running. Use one service or all six; they’re designed to work together.</p>
+        <span class="eyebrow">Seven services, one team</span>
+        <h1 class="display h1 page-title" id="page-title">Websites, marketing, cyber security, <span class="grad-text">IT and hosting.</span></h1>
+        <p class="lede">Everything a small business needs from its technology: the website and the marketing that bring in work, and the IT, security and hosting that keep everything running. Use one service or all seven; they’re designed to work together.</p>
         <div class="btn-row"><a class="btn btn-primary btn-lg" href="/contact" data-magnet>Start a project${icon.arrowRight}</a></div>
       </div>
     </div>
@@ -153,7 +153,7 @@ function indexPage() {
         <h2 class="h2" id="group-${g.id}">${esc(g.line)}</h2>
         <p class="lede">${esc(g.summary)}</p>
       </div>
-      <div class="bento" data-reveal-children>${servicesInGroup(g.id).map((s) => serviceCard(s, g.id === 'build' ? 'b-12 b-wide' : g.id === 'grow' ? 'b-4' : 'b-6'))}</div>
+      <div class="bento" data-reveal-children>${servicesInGroup(g.id).map((s) => serviceCard(s, g.id === 'build' ? 'b-12 b-wide' : 'b-4'))}</div>
     </div>
   </section>`
   )}
@@ -163,10 +163,10 @@ function indexPage() {
 
   return {
     path: '/services',
-    title: 'Web Design, SEO, Ads & Hosting | Roffey-Roberts Web',
-    description: 'Website design, SEO, digital marketing, Google and Meta ads, cyber security and managed hosting for small businesses in Hampshire and across the UK.',
+    title: 'Web, Marketing, Cyber Security & IT Services | Roffey-Roberts Web',
+    description: 'Website design, SEO, digital marketing, Google and Meta ads, cyber security, IT support and managed hosting for small businesses in Hampshire and the UK.',
     og: 'services',
-    ogTitle: 'Six services. One studio.',
+    ogTitle: 'Seven services. One team.',
     schema: [
       breadcrumbs([['Home', '/'], ['Services', '/services']]),
       { '@type': 'ItemList', itemListElement: services.map((s, i) => ({ '@type': 'ListItem', position: i + 1, url: `${site.url}/services/${s.slug}`, name: s.name })) },

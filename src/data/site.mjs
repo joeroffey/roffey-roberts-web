@@ -4,7 +4,7 @@ export const site = {
   shortName: 'Roffey-Roberts',
   url: 'https://www.roffey-robertsweb.co.uk',
   locale: 'en_GB',
-  tagline: 'Websites, SEO, ads, security and hosting for businesses that need their website to bring in work.',
+  tagline: 'Websites, SEO, ads, cyber security, IT support and hosting for small businesses across Hampshire and the UK.',
   base: 'Hampshire',
   areaServed: ['Hampshire', 'Dorset', 'West Sussex', 'Wiltshire', 'United Kingdom'],
   towns: ['Southampton', 'Portsmouth', 'Winchester', 'Bournemouth', 'Lymington', 'Ringwood'],

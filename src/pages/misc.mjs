@@ -44,8 +44,8 @@ function about() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['About', '/about']])}
-        <h1 class="display h1 page-title" id="page-title">A small Hampshire web studio, <span class="grad-text">on purpose.</span></h1>
-        <p class="lede">${esc(site.name)} is a web studio based in ${esc(site.base)}. We build websites for businesses that depend on them, then make sure they’re found and kept safe.</p>
+        <h1 class="display h1 page-title" id="page-title">A small Hampshire web and IT studio, <span class="grad-text">on purpose.</span></h1>
+        <p class="lede">${esc(site.name)} is a web and IT studio based in ${esc(site.base)}. We build the websites and marketing that bring businesses work, and look after the IT, security and hosting that keep them working.</p>
       </div>
     </div>
   </section>
@@ -54,10 +54,10 @@ function about() {
     <div class="wrap two-col">
       <div data-reveal><span class="eyebrow">Why we work this way</span><h2 class="h2" id="story-title" style="margin-top:16px">One team, the whole job.</h2></div>
       <div class="lead-text" data-reveal>
-        <p>Most of the businesses we meet already have a website. It looks fine. It just doesn’t bring in much work, and nobody can quite say why.</p>
-        <p>Usually it’s a mix of things handled by different people: a designer who has moved on, an SEO agency sending reports nobody reads, ads run by someone else, and nobody watching security at all. Each part is someone’s job, so the whole is nobody’s.</p>
-        <p><strong>So we do the whole thing.</strong> We design and build the website, get it found, run the ads, and keep it secure and online, with one small team that can see how every part affects the rest.</p>
-        <p>We’re deliberately small. You deal with the people designing and building your site, not an account manager, and we would rather do fewer projects properly than rush more.</p>
+        <p>Most of the businesses we meet already have a website and a cupboard full of IT. The website looks fine but doesn’t bring in much work, and the IT works until the day it doesn’t.</p>
+        <p>Usually it’s a mix of things handled by different people: a designer who has moved on, an SEO agency sending reports nobody reads, ads run by someone else, an IT firm that only picks up when something is broken, and nobody watching security at all. Each part is someone’s job, so the whole is nobody’s.</p>
+        <p><strong>So we do the whole thing.</strong> We design and build the website, get it found, run the ads, and look after the email, devices, cloud accounts, security and hosting behind it, with one small team that can see how every part affects the rest.</p>
+        <p>We’re deliberately small. You deal with the person doing the work, not an account manager, and we would rather look after fewer businesses properly than rush more.</p>
       </div>
     </div>
   </section>
@@ -72,7 +72,7 @@ function about() {
         <div>
           <h3 class="h3">${esc(site.founder.name)}</h3>
           <p class="person-role">${esc(site.founder.role)}, ${esc(site.name)}</p>
-          <p>Joe designs and builds every site the studio ships, and runs the SEO, ads and hosting behind them. He comes from the trades the studio serves: alongside Roffey-Roberts he looks after the websites and marketing for a renewable energy installer and a family-run industrial door company on the South Coast, which is where the studio’s focus on calls, quotes and bookings comes from.</p>
+          <p>Joe designs and builds every site the studio ships, runs the SEO and ads, and looks after the IT, security and hosting behind them. He comes from the trades the studio serves: alongside Roffey-Roberts he looks after the websites and marketing for a renewable energy installer and a family-run industrial door company on the South Coast, which is where the studio’s focus on calls, quotes and bookings comes from.</p>
           ${site.founder.bio.map((t) => html`<p>${esc(t)}</p>`)}
           <p>If you get in touch, Joe is who replies, who you’ll speak to on the first call, and who does the work.</p>
           ${site.founder.credentials.length ? html`<ul class="person-creds pill-list" aria-label="Credentials">${site.founder.credentials.map((c) => html`<li><span>${icon.check}${esc(c)}</span></li>`)}</ul>` : ''}
@@ -121,8 +121,8 @@ function about() {
   `;
   return {
     path: '/about',
-    title: 'About Us | Hampshire Web Design Studio | Roffey-Roberts Web',
-    description: 'Roffey-Roberts Web is a small Hampshire web studio. We design and build websites, get them found and keep them secure, with one team doing the whole job.',
+    title: 'About Us | Hampshire Web & IT Studio | Roffey-Roberts Web',
+    description: 'Roffey-Roberts Web is a small Hampshire web and IT studio. Websites, marketing, cyber security, IT support and hosting, with one team doing the whole job.',
     og: 'about',
     ogTitle: 'A small studio, on purpose.',
     schema: [breadcrumbs([['Home', '/'], ['About', '/about']]), { '@type': 'AboutPage', url: `${site.url}/about`, name: 'About Roffey-Roberts Web', about: { '@id': `${site.url}/#organization` } }],
@@ -232,7 +232,7 @@ function contact() {
   return {
     path: '/contact',
     title: 'Contact Us: Start a Project | Roffey-Roberts Web',
-    description: 'Tell us about your website, SEO, ads, security or hosting project. We reply to every enquiry within one working day with straight advice.',
+    description: 'Tell us about your website, marketing, cyber security, IT or hosting needs. We reply to every enquiry within one working day with straight advice.',
     og: 'contact',
     ogTitle: 'Start a project.',
     schema: [breadcrumbs([['Home', '/'], ['Contact', '/contact']]), { '@type': 'ContactPage', url: `${site.url}/contact`, name: 'Contact Roffey-Roberts Web', about: { '@id': `${site.url}/#organization` } }],

@@ -7,6 +7,7 @@ export const serviceIcons = {
   'digital-marketing': icon.megaphone,
   'google-meta-ads': icon.target,
   'cyber-security': icon.shield,
+  'it-support': icon.laptop,
   'website-hosting': icon.server,
 };
 
@@ -97,6 +98,8 @@ export function serviceVisual(slug, labels) {
       return html`<ul class="vis-channels"><li>${icon.mail} Email</li><li>${icon.star} <span class="stars">★★★★★</span> Reviews</li><li>${icon.users} Social</li><li>${icon.file} Landing pages</li><li>${icon.chart} Tracking</li></ul>`;
     case 'cyber-security':
       return html`<div class="vis-shield">${icon.shield}</div><ul class="vis-locks">${(labels || ['MFA', 'DMARC', 'Backups', 'Updates']).map((l) => html`<li>${esc(l)}</li>`)}</ul>`;
+    case 'it-support':
+      return html`<ul class="vis-channels"><li>${icon.mail} Email set up</li><li>${icon.laptop} Laptop ready</li><li>${icon.lock} 365 secured</li><li>${icon.globe} Wi-Fi sorted</li><li>${icon.phone} Someone to call</li></ul>`;
     case 'website-hosting':
       return html`<div class="vis-uptime"><div class="vis-uptime-row"><b>All systems normal</b><span>Monitored 24/7</span></div><div class="vis-ticks">${Array.from({ length: 30 }, () => '<i></i>')}</div></div><span class="vis-globe"></span>`;
     default:
@@ -104,7 +107,7 @@ export function serviceVisual(slug, labels) {
   }
 }
 
-const bentoSize = { 'website-design': 'b-7', seo: 'b-5', 'digital-marketing': 'b-5', 'google-meta-ads': 'b-4', 'cyber-security': 'b-4', 'website-hosting': 'b-4' };
+const bentoSize = { 'website-design': 'b-7', seo: 'b-5', 'digital-marketing': 'b-5', 'google-meta-ads': 'b-4', 'cyber-security': 'b-4', 'it-support': 'b-4', 'website-hosting': 'b-12 b-wide' };
 
 export const serviceCard = (s, size = bentoSize[s.slug]) => html`
   <a class="card card-hover service-card ${size}" href="/services/${s.slug}" data-spot>

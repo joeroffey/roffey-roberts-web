@@ -13,6 +13,7 @@ const SERVICE_NAMES = {
   'digital-marketing': 'Digital marketing',
   'google-meta-ads': 'Google & Meta ads',
   'cyber-security': 'Cyber security',
+  'it-support': 'IT support',
   'website-hosting': 'Hosting & care',
   'not-sure': 'Not sure yet',
 };

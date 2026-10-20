@@ -12,7 +12,7 @@ export const homeFaqs = [
   ['How much does a website cost?', 'Every project is different, so we quote a fixed price after a free call. The quote is itemised, in writing, and only changes if the brief does. Monthly services like SEO, ads management and hosting are a fixed monthly fee.'],
   ['How long does a new website take?', 'Most small business websites take four to eight weeks from the first call to launch. Copy and photos are usually what decides the pace, and we can help with both.'],
   ['Do you only work with businesses in Hampshire?', 'No. Most of our clients are along the South Coast, from Portsmouth to Bournemouth, but we work with businesses anywhere in the UK over video calls.'],
-  ['Can you take over my existing website, SEO or ads?', 'Yes. We start with an honest audit, keep what is working, and tell you plainly what isn’t. Sometimes the answer is a few fixes rather than a rebuild.'],
+  ['Can you take over my existing website, SEO, ads or IT?', 'Yes. We start with an honest audit, keep what is working, and tell you plainly what isn’t. Sometimes the answer is a few fixes rather than a rebuild.'],
   ['Who owns the website and the accounts?', 'You do. The domain, website, Google and Meta ad accounts and analytics are all set up in your name. If you ever move on, everything goes with you.'],
   ['Do I have to sign a long contract?', 'No. Projects are quoted and paid for as one-off jobs, and monthly services run month to month.'],
 ];
@@ -55,11 +55,11 @@ const steps = [
 ];
 
 const promises = [
-  [icon.key, 'You own everything.', 'Your domain, website, ad accounts and analytics are set up in your name. If you ever move on, it all goes with you.'],
+  [icon.key, 'You own everything.', 'Your domain, website, Microsoft 365, ad accounts and analytics are set up in your name. If you ever move on, it all goes with you.'],
   [icon.file, 'Prices are fixed.', 'Every project is quoted up front and in writing, and the price only changes if the brief does.'],
   [icon.refresh, 'No long lock-ins.', 'Monthly services run month to month. We’d rather keep clients by being worth keeping.'],
   [icon.chart, 'Reports you can read.', 'Calls, enquiries and what each one cost. Not a 40-page PDF of charts and jargon.'],
-  [icon.users, 'You talk to the people doing the work.', 'No account managers passing messages. The person you speak to is the person building your site.'],
+  [icon.users, 'You talk to the people doing the work.', 'No account managers passing messages. The person you speak to is the person building your site and looking after your IT.'],
 ];
 
 export function pages() {
@@ -69,9 +69,9 @@ export function pages() {
     <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z hero-grid">
       <div class="hero-copy" data-reveal-children>
-        <span class="eyebrow eyebrow-live"><span>${esc(site.base)} web studio<span class="eyebrow-long"> · Now booking new projects</span><span class="eyebrow-short"> · Booking now</span></span></span>
-        <h1 class="display hero-title" id="hero-title">Websites that <span class="grad-text">win you work.</span><span class="h1-sub">Web design, SEO and ads for businesses in Hampshire and across the UK.</span></h1>
-        <p class="lede hero-lede">We build your website by hand, get it found on Google, run the ads that fill your diary, and keep the whole thing secure and online. One studio, the whole job.</p>
+        <span class="eyebrow eyebrow-live"><span>${esc(site.base)} web & IT studio<span class="eyebrow-long"> · Now booking new projects</span><span class="eyebrow-short"> · Booking now</span></span></span>
+        <h1 class="display hero-title" id="hero-title">Websites and IT that <span class="grad-text">just work.</span><span class="h1-sub">Web design, SEO, ads, cyber security and IT support for businesses in Hampshire and across the UK.</span></h1>
+        <p class="lede hero-lede">We build your website, get it found on Google and run the ads that fill your diary. Then we look after the IT behind it all: email, Microsoft 365, laptops, security and backups. One team, the whole job.</p>
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href="/contact" data-magnet>Start a project${icon.arrowRight}</a>
           <a class="btn btn-ghost btn-lg" href="/work" data-magnet>See our work</a>
@@ -113,8 +113,8 @@ export function pages() {
     <div class="wrap">
       <div class="section-head" data-reveal>
         <span class="eyebrow">What we do</span>
-        <h2 class="h2" id="services-title">Everything your website needs, <span class="grad-text">under one roof.</span></h2>
-        <p class="lede">Most businesses juggle a designer, an SEO agency, someone for the ads and an IT person. We do all six parts, so nothing falls through the gaps and every part pulls in the same direction.</p>
+        <h2 class="h2" id="services-title">Your website, marketing and IT, <span class="grad-text">under one roof.</span></h2>
+        <p class="lede">Most businesses juggle a designer, an SEO agency, someone for the ads and an IT person who only appears when something breaks. We do all seven parts, so nothing falls through the gaps and every part pulls in the same direction.</p>
       </div>
       <div class="bento" data-reveal-children>
         ${services.map((s) => serviceCard(s))}
@@ -217,9 +217,9 @@ export function pages() {
   return [
     {
       path: '/',
-      title: 'Web Design, SEO & Ads in Hampshire | Roffey-Roberts Web',
+      title: 'Web Design, Marketing & IT Support Hampshire | Roffey-Roberts Web',
       description:
-        'Hampshire web studio for businesses that need their website to bring in work: custom web design, SEO, Google and Meta ads, cyber security and hosting.',
+        'Hampshire web and IT studio for small businesses: web design, SEO, Google and Meta ads, cyber security, IT support and hosting, all from one team.',
       og: 'home',
       bodyClass: 'is-home',
       schema: [
