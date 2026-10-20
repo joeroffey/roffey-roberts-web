@@ -290,8 +290,9 @@
     }
     if (params.get('website')) F2('website').value = params.get('website').slice(0, 300);
     if (params.get('business')) F2('business').value = params.get('business').slice(0, 160);
-    if (params.get('listing') || params.get('area')) {
+    if (params.get('listing') || params.get('area') || params.get('topic')) {
       var lines = [];
+      if (params.get('topic')) lines.push('Interested in: ' + params.get('topic').slice(0, 80));
       if (params.get('area')) lines.push('Area: ' + params.get('area').slice(0, 60));
       if (params.get('listing')) lines.push('Search listing I drafted on your site: ' + params.get('listing').slice(0, 200));
       F2('message').value = lines.join('\n') + '\n\n';

@@ -7,6 +7,7 @@ import { projectBySlug } from '../data/work.mjs';
 import { areas } from '../data/areas.mjs';
 import { guidesForService } from '../data/guides.mjs';
 import { guideCard } from './guides.mjs';
+import { cyberGrid } from './cyber.mjs';
 
 function servicePage(s) {
   const related = s.related.map((slug) => projectBySlug[slug]).filter(Boolean);
@@ -49,6 +50,8 @@ function servicePage(s) {
       ${featureGrid(s.included)}
     </div>
   </section>
+
+  ${s.slug === 'cyber-security' ? cyberGrid() : ''}
 
   <section class="section" aria-labelledby="how-title">
     <div class="wrap">

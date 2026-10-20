@@ -82,7 +82,7 @@ export const shot = (p) => html`
 // ---------------------------------------------------------------------------
 // Service visuals for the bento grid and service page heroes.
 // ---------------------------------------------------------------------------
-export function serviceVisual(slug) {
+export function serviceVisual(slug, labels) {
   switch (slug) {
     case 'website-design':
       return html`<div class="vis-window"><div class="vis-window-bar"><i></i><i></i><i></i><span class="vis-window-url"></span></div><div class="vis-window-nav"><i></i><span><i></i><i></i><i></i></span><em></em></div><div class="vis-window-body"><div class="vis-lines"><i></i><i></i><i></i><i></i></div><div class="vis-box"></div></div><div class="vis-window-tiles"><i></i><i></i><i></i></div></div>`;
@@ -96,7 +96,7 @@ export function serviceVisual(slug) {
     case 'digital-marketing':
       return html`<ul class="vis-channels"><li>${icon.mail} Email</li><li>${icon.star} <span class="stars">★★★★★</span> Reviews</li><li>${icon.users} Social</li><li>${icon.file} Landing pages</li><li>${icon.chart} Tracking</li></ul>`;
     case 'cyber-security':
-      return html`<div class="vis-shield">${icon.shield}</div><ul class="vis-locks"><li>SSL</li><li>DMARC</li><li>2FA</li><li>Backups</li></ul>`;
+      return html`<div class="vis-shield">${icon.shield}</div><ul class="vis-locks">${(labels || ['MFA', 'DMARC', 'Backups', 'Updates']).map((l) => html`<li>${esc(l)}</li>`)}</ul>`;
     case 'website-hosting':
       return html`<div class="vis-uptime"><div class="vis-uptime-row"><b>All systems normal</b><span>Monitored 24/7</span></div><div class="vis-ticks">${Array.from({ length: 30 }, () => '<i></i>')}</div></div><span class="vis-globe"></span>`;
     default:
@@ -252,3 +252,12 @@ export const resultsBlock = (results) =>
     </div>
   </section>`
     : '';
+
+// Card for a specialist cyber security service (under /services/cyber-security/).
+export const cyberCard = (c) => html`
+  <a class="card card-hover guide-card" href="/services/cyber-security/${c.slug}" data-spot data-cursor="View">
+    <span class="icon-tile">${icon[c.icon] || icon.shield}</span>
+    <h3 class="h3">${esc(c.name)}</h3>
+    <p class="muted">${esc(c.card)}</p>
+    <span class="link link-arrow">Find out more${icon.arrowRight}</span>
+  </a>`;

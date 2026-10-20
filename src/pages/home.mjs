@@ -105,7 +105,7 @@ export function pages() {
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      ${[0, 1].map(() => html`<ul>${['Website design', 'SEO', 'Google Ads', 'Meta Ads', 'Digital marketing', 'Cyber security', 'Hosting & care', 'Landing pages', 'Google Business Profile', 'Email protection'].map((t) => html`<li>${icon.sparkle}${t}</li>`)}</ul>`)}
+      ${[0, 1].map(() => html`<ul>${['Website design', 'SEO', 'Google Ads', 'Meta Ads', 'Digital marketing', 'Cyber security', 'Cyber Essentials', 'Hosting & care', 'Landing pages', 'Google Business Profile', 'Email protection', 'Backups', 'Staff training'].map((t) => html`<li>${icon.sparkle}${t}</li>`)}</ul>`)}
     </div>
   </div>
 
