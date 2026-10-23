@@ -12,7 +12,6 @@ function areaPage(a) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
@@ -20,7 +19,7 @@ function areaPage(a) {
         <h1 class="display h1 page-title" id="page-title">${esc(a.h1)}</h1>
         <p class="lede">${esc(a.lede)}</p>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="/contact?area=${encodeURIComponent(a.short)}" data-magnet>Start a project${icon.arrowRight}</a>
+          <a class="btn btn-primary btn-lg" href="/contact?area=${encodeURIComponent(a.short)}" data-press>Start a project${icon.arrowRight}</a>
           ${site.phone && html`<a class="btn btn-ghost btn-lg" href="tel:${esc(site.phoneHref || site.phone)}">${icon.phone}${esc(site.phone)}</a>`}
         </div>
       </div>
@@ -30,11 +29,10 @@ function areaPage(a) {
   <section class="section" aria-labelledby="local-title">
     <div class="wrap">
       <div class="two-col" style="margin-bottom:clamp(56px,7vw,96px)">
-        <div data-reveal><span class="eyebrow">Why it’s different here</span></div>
+        <div data-reveal><h2 class="h3 col-heading">Why it’s different here</h2></div>
         <div class="lead-text" data-reveal>${a.intro.map((p) => html`<p>${esc(p)}</p>`)}</div>
       </div>
       <div class="section-head" data-reveal>
-        <span class="eyebrow">What we do for ${esc(a.short)} businesses</span>
         <h2 class="h2" id="local-title">Built to be found <span class="grad-text">locally.</span></h2>
       </div>
       ${featureGrid(a.local, [icon.pin, icon.search, icon.bolt])}
@@ -54,7 +52,6 @@ function areaPage(a) {
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Nearby work</span>
         <h2 class="h2" id="nearby-title">Work we’ve done <span class="grad-text">near ${esc(a.short)}.</span></h2>
         <p class="lede">${esc(a.nearbyNote)}</p>
       </div>
@@ -96,7 +93,6 @@ function indexPage() {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Areas', '/web-design']])}

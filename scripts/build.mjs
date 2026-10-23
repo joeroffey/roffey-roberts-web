@@ -26,6 +26,7 @@ cpSync(staticDir, out, { recursive: true });
 const assetVersion = createHash('sha256')
   .update(readFileSync(join(staticDir, 'css/site.css')))
   .update(readFileSync(join(staticDir, 'js/site.js')))
+  .update(readFileSync(join(staticDir, 'js/motion.js')))
   .digest('hex')
   .slice(0, 10);
 

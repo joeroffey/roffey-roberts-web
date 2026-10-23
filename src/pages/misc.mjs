@@ -40,7 +40,6 @@ function about() {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['About', '/about']])}
@@ -52,7 +51,7 @@ function about() {
 
   <section class="section" aria-labelledby="story-title">
     <div class="wrap two-col">
-      <div data-reveal><span class="eyebrow">Why we work this way</span><h2 class="h2" id="story-title" style="margin-top:16px">One team, the whole job.</h2></div>
+      <div data-reveal><h2 class="h2" id="story-title">One team, the whole job.</h2></div>
       <div class="lead-text" data-reveal>
         <p>Most of the businesses we meet already have a website and a cupboard full of IT. The website looks fine but doesn’t bring in much work, and the IT works until the day it doesn’t.</p>
         <p>Usually it’s a mix of things handled by different people: a designer who has moved on, an SEO agency sending reports nobody reads, ads run by someone else, an IT firm that only picks up when something is broken, and nobody watching security at all. Each part is someone’s job, so the whole is nobody’s.</p>
@@ -64,7 +63,7 @@ function about() {
 
   <section class="section" id="${site.founder.name.split(' ')[0].toLowerCase()}" aria-labelledby="people-title">
     <div class="wrap two-col">
-      <div data-reveal><span class="eyebrow">Who you’ll work with</span><h2 class="h2" id="people-title" style="margin-top:16px">The person behind the work.</h2></div>
+      <div data-reveal><h2 class="h2" id="people-title">The person behind the work.</h2></div>
       <div class="card card-pad person" data-reveal data-spot>
         ${site.founder.photo
           ? html`<img class="person-photo" src="${esc(site.founder.photo)}" alt="${esc(site.founder.name)}, ${esc(site.founder.role.toLowerCase())} of ${esc(site.name)}" width="120" height="120" loading="lazy">`
@@ -91,7 +90,6 @@ function about() {
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">What we care about</span>
         <h2 class="h2" id="values-title">Six things we won’t <span class="grad-text">compromise on.</span></h2>
       </div>
       ${featureGrid(values, [icon.chart, icon.bolt, icon.file, icon.key, icon.shield, icon.heart])}
@@ -101,10 +99,9 @@ function about() {
   <section class="section" aria-labelledby="where-title">
     <div class="wrap tool-grid">
       <div class="section-head" data-reveal style="margin:0">
-        <span class="eyebrow">Where we work</span>
         <h2 class="h2" id="where-title">${esc(site.base)}, the South Coast, and <span class="grad-text">anywhere in the UK.</span></h2>
         <p class="lede">We’re based in ${esc(site.base)} and most of our clients are in and around ${esc(site.towns.slice(0, -1).join(', '))} and ${esc(site.towns.at(-1))}. We’re always happy to meet in person locally, and most projects run perfectly well over video calls, email and a shared preview link.</p>
-        <div class="btn-row"><a class="btn btn-primary" href="/contact" data-magnet>Start a project${icon.arrowRight}</a></div>
+        <div class="btn-row"><a class="btn btn-primary" href="/contact" data-press>Start a project${icon.arrowRight}</a></div>
       </div>
       <div class="card card-pad" data-reveal>${coverage()}</div>
     </div>
@@ -135,11 +132,9 @@ function contact() {
   const body = html`
   <section class="page-hero" style="padding-bottom:clamp(32px,4vw,48px)" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Contact', '/contact']])}
-        <span class="eyebrow">Contact us</span>
         <h1 class="display h1 page-title" id="page-title">Let’s start your <span class="grad-text">project.</span></h1>
         <p class="lede">Tell us a bit about your business and what you need. We reply to every enquiry within one working day, with straight advice and a clear next step.</p>
       </div>
@@ -198,7 +193,7 @@ function contact() {
           <div class="hp" aria-hidden="true"><label for="f-company-url">Leave this empty</label><input id="f-company-url" name="company_url" type="text" tabindex="-1" autocomplete="off"></div>
 
           <div class="form-foot">
-            <button class="btn btn-primary btn-lg" type="submit" data-submit data-magnet>Send enquiry${icon.send}</button>
+            <button class="btn btn-primary btn-lg" type="submit" data-submit data-press>Send enquiry${icon.send}</button>
             <p class="small">We’ll only use your details to reply to this enquiry. See our <a href="/privacy">privacy notice</a>.</p>
           </div>
           <div class="form-status" role="status" aria-live="polite" data-status></div>
@@ -295,7 +290,6 @@ function notFound() {
     ${aurora()}
     <div class="wrap z">
       <div class="page-hero-copy">
-        <span class="eyebrow">404</span>
         <h1 class="display h1 page-title" id="page-title">This page isn’t <span class="grad-text">here.</span></h1>
         <p class="lede">The link may be old, or the address may have a typo. Try one of these instead.</p>
         <div class="pill-list">

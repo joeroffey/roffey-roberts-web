@@ -21,21 +21,20 @@ function cyberPage(c) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z page-hero-grid">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
         <h1 class="display h1 page-title" id="page-title">${esc(c.h1)}</h1>
         <p class="lede">${esc(c.lede)}</p>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="${contactHref}" data-magnet>Talk to us${icon.arrowRight}</a>
+          <a class="btn btn-primary btn-lg" href="${contactHref}" data-press>Talk to us${icon.arrowRight}</a>
           <a class="btn btn-ghost btn-lg" href="/services/cyber-security">All cyber security services</a>
         </div>
       </div>
       <div class="page-visual" data-reveal style="--d:0.2s">
         <div class="card" data-spot>
           <div class="service-card-head"><span class="icon-tile">${icon[c.icon] || icon.shield}</span><span class="tag tag-accent">Cyber security</span></div>
-          <div class="service-visual" style="margin-top:28px">${serviceVisual('cyber-security', c.visLabels)}</div>
+          <div class="service-visual" data-ui aria-hidden="true" style="margin-top:28px">${serviceVisual('cyber-security', c.visLabels)}</div>
         </div>
       </div>
     </div>
@@ -44,11 +43,10 @@ function cyberPage(c) {
   <section class="section" aria-labelledby="included-title">
     <div class="wrap">
       <div class="two-col" style="margin-bottom:clamp(56px,7vw,96px)">
-        <div data-reveal><span class="eyebrow">Why it matters</span></div>
+        <div data-reveal><h2 class="h3 col-heading">Why it matters</h2></div>
         <div class="lead-text" data-reveal>${c.intro.map((p) => html`<p>${esc(p)}</p>`)}</div>
       </div>
       <div class="section-head" data-reveal>
-        <span class="eyebrow">What’s included</span>
         <h2 class="h2" id="included-title">What’s included in ${esc(lc(c.name))}.</h2>
       </div>
       ${featureGrid(c.included)}
@@ -58,7 +56,6 @@ function cyberPage(c) {
   <section class="section" aria-labelledby="how-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">How it works</span>
         <h2 class="h2" id="how-title">How ${esc(lc(c.name))} works.</h2>
       </div>
       ${timeline(c.steps)}
@@ -70,7 +67,6 @@ function cyberPage(c) {
   <section class="section section-tight" aria-labelledby="guide-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Read first</span>
         <h2 class="h2" id="guide-title">The guide to go with it.</h2>
       </div>
       <div class="guide-grid" data-reveal-children>${guideCard(guide)}</div>
@@ -121,7 +117,6 @@ export const cyberGrid = () => html`
   <section class="section section-tight" aria-labelledby="cyber-services-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Eight services</span>
         <h2 class="h2" id="cyber-services-title">Pick what you need, or <span class="grad-text">let us audit first.</span></h2>
         <p class="lede">Most businesses start with an audit and work down the list. Each service also stands on its own.</p>
       </div>

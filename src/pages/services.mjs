@@ -17,21 +17,20 @@ function servicePage(s) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z page-hero-grid">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
         <h1 class="display h1 page-title" id="page-title">${esc(s.h1)}</h1>
         <p class="lede">${esc(s.lede)}</p>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="/contact?service=${s.slug}" data-magnet>Start a project${icon.arrowRight}</a>
+          <a class="btn btn-primary btn-lg" href="/contact?service=${s.slug}" data-press>Start a project${icon.arrowRight}</a>
           ${related.length ? html`<a class="btn btn-ghost btn-lg" href="#related-work">See related work</a>` : ''}
         </div>
       </div>
       <div class="page-visual" data-reveal style="--d:0.2s">
         <div class="card" data-spot>
           <div class="service-card-head"><span class="icon-tile">${serviceIcons[s.slug]}</span><span class="tag tag-accent">${esc(groups.find((g) => g.id === s.group).line)}</span></div>
-          <div class="service-visual" style="margin-top:28px">${serviceVisual(s.slug)}</div>
+          <div class="service-visual" data-ui aria-hidden="true" style="margin-top:28px">${serviceVisual(s.slug)}</div>
         </div>
       </div>
     </div>
@@ -40,11 +39,10 @@ function servicePage(s) {
   <section class="section" aria-labelledby="included-title">
     <div class="wrap">
       <div class="two-col" style="margin-bottom:clamp(56px,7vw,96px)">
-        <div data-reveal><span class="eyebrow">Why it matters</span></div>
+        <div data-reveal><h2 class="h3 col-heading">Why it matters</h2></div>
         <div class="lead-text" data-reveal>${s.intro.map((p) => html`<p>${esc(p)}</p>`)}<p>Most clients pair this with ${s.pairsWith.map((o, i) => html`${i ? ' and ' : ''}<a class="link-under" href="/services/${o}">${esc(serviceBySlug[o].name.toLowerCase().replace('seo', 'SEO').replace('google & meta', 'Google & Meta'))}</a>`)}.</p></div>
       </div>
       <div class="section-head" data-reveal>
-        <span class="eyebrow">What’s included</span>
         <h2 class="h2" id="included-title">${esc(s.includedHeading || `What’s included in our ${s.noun}`)}</h2>
       </div>
       ${featureGrid(s.included)}
@@ -56,7 +54,6 @@ function servicePage(s) {
   <section class="section" aria-labelledby="how-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">How it works</span>
         <h2 class="h2" id="how-title">${esc(s.howHeading || `How our ${s.noun} works`)}</h2>
       </div>
       ${timeline(s.steps)}
@@ -69,7 +66,6 @@ function servicePage(s) {
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Related work</span>
         <h2 class="h2" id="related-title">Where we’ve done this before.</h2>
       </div>
       <div class="work-grid" data-reveal-children>${related.map(workCard)}</div>
@@ -82,7 +78,6 @@ function servicePage(s) {
   <section class="section section-tight" aria-labelledby="guides-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Read first</span>
         <h2 class="h2" id="guides-title">Guides that answer the usual questions.</h2>
       </div>
       <div class="guide-grid" data-reveal-children>${guidesForService(s.slug).map(guideCard)}</div>
@@ -132,14 +127,12 @@ function indexPage() {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Services', '/services']])}
-        <span class="eyebrow">Seven services, one team</span>
         <h1 class="display h1 page-title" id="page-title">Websites, marketing, cyber security, <span class="grad-text">IT and hosting.</span></h1>
         <p class="lede">Everything a small business needs from its technology: the website and the marketing that bring in work, and the IT, security and hosting that keep everything running. Use one service or all seven; they’re designed to work together.</p>
-        <div class="btn-row"><a class="btn btn-primary btn-lg" href="/contact" data-magnet>Start a project${icon.arrowRight}</a></div>
+        <div class="btn-row"><a class="btn btn-primary btn-lg" href="/contact" data-press>Start a project${icon.arrowRight}</a></div>
       </div>
     </div>
   </section>

@@ -21,9 +21,9 @@ function block(b) {
 
 export const guideCard = (g) => html`
   <a class="card card-hover guide-card" href="/guides/${g.slug}" data-spot data-cursor="Read">
-    <span class="guide-meta">${g.readMinutes} min read · Updated ${esc(fmtDate(g.updated))}</span>
     <h3 class="h3">${esc(g.h1)}</h3>
     <p class="muted">${esc(g.description)}</p>
+    <span class="guide-meta">${g.readMinutes} min read · Updated ${esc(fmtDate(g.updated))}</span>
     <span class="link link-arrow">Read the guide${icon.arrowRight}</span>
   </a>`;
 
@@ -36,7 +36,6 @@ function guidePage(g) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
@@ -114,11 +113,9 @@ function indexPage() {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Guides', '/guides']])}
-        <span class="eyebrow">Guides</span>
         <h1 class="display h1 page-title" id="page-title">Plain answers to the questions <span class="grad-text">before you hire anyone.</span></h1>
         <p class="lede">What things cost, how local search actually works, which ads to run first and what Cyber Essentials involves. Written from the work we do for businesses on the South Coast, with no sales pitch in the way.</p>
       </div>

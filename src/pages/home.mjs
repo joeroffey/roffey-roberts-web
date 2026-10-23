@@ -1,6 +1,6 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { faqSchema } from '../lib/layout.mjs';
-import { aurora, cta, faqSection, serviceCard, stackCard, serpCard, timeline, browser, phone, testimonialSection } from '../lib/components.mjs';
+import { aurora, cta, faqSection, serviceCard, stackCard, serpCard, timeline, testimonialSection } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { testimonials } from '../data/testimonials.mjs';
 import { guides } from '../data/guides.mjs';
@@ -16,25 +16,6 @@ export const homeFaqs = [
   ['Who owns the website and the accounts?', 'You do. The domain, website, Google and Meta ad accounts and analytics are all set up in your name. If you ever move on, everything goes with you.'],
   ['Do I have to sign a long contract?', 'No. Projects are quoted and paid for as one-off jobs, and monthly services run month to month.'],
 ];
-
-// A fictional business used only to demonstrate the kind of site we build.
-const demo = {
-  domain: 'harbourplumbing.co.uk',
-  mock: {
-    variant: 'services',
-    cls: 'mk-demo',
-    brand: '#0F172A',
-    brand2: '#2563EB',
-    photo: 'ph-demo',
-    photos: ['ph-demo', 'ph-demo', 'ph-demo'],
-    logo: 'Harbour',
-    nav: ['Services', 'Areas', 'Reviews', 'Contact'],
-    eyebrow: 'Gas Safe registered · Southampton',
-    headline: 'Plumbing & heating engineers you can actually get hold of',
-    cta: ['Get a quote', 'Call now'],
-    items: ['Boiler installs', 'Emergency repairs', 'Bathrooms'],
-  },
-};
 
 const sample = { business: 'Harbour Plumbing', service: 'Emergency plumber', area: 'Southampton' };
 const sampleTitle = `${sample.service} in ${sample.area} | ${sample.business}`;
@@ -66,55 +47,46 @@ export function pages() {
   const body = html`
   <section class="hero" aria-labelledby="hero-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z hero-grid">
       <div class="hero-copy" data-reveal-children>
-        <span class="eyebrow eyebrow-live"><span>${esc(site.base)} web & IT studio<span class="eyebrow-long"> · Now booking new projects</span><span class="eyebrow-short"> · Booking now</span></span></span>
-        <h1 class="display hero-title" id="hero-title">Websites and IT that <span class="grad-text">just work.</span><span class="h1-sub">Web design, SEO, ads, cyber security and IT support for businesses in Hampshire and across the UK.</span></h1>
-        <p class="lede hero-lede">We build your website, get it found on Google and run the ads that fill your diary. Then we look after the IT behind it all: email, Microsoft 365, laptops, security and backups. One team, the whole job.</p>
+        <h1 class="display hero-title" id="hero-title">Websites and IT that <span class="grad-text">just work.</span><span class="h1-sub">Web design, SEO, ads, cyber security and IT support in ${esc(site.base)}.</span></h1>
+        <p class="lede hero-lede">We build your website, get it found and run the ads that fill your diary. Then we look after the email, laptops, security and backups behind it. One team, the whole job.</p>
         <div class="btn-row">
-          <a class="btn btn-primary btn-lg" href="/contact" data-magnet>Start a project${icon.arrowRight}</a>
-          <a class="btn btn-ghost btn-lg" href="/work" data-magnet>See our work</a>
+          <a class="btn btn-primary btn-lg" href="/contact" data-press>Start a project${icon.arrowRight}</a>
+          <a class="btn btn-ghost btn-lg" href="/work" data-press>See our work</a>
         </div>
-        <div class="hero-trust">
-          <span>Recent work for</span>
-          <ul>${projects.map((p) => html`<li><a href="/work/${p.slug}">${esc(p.name)}</a></li>`)}</ul>
-        </div>
+        <p class="hero-note">Now booking new projects. We reply within one working day.</p>
       </div>
-      <div class="hero-scene" data-scene aria-hidden="true" data-nosnippet>
-        <span class="scene-glow"></span>
-        <span class="scene-label">Example site</span>
-        <div class="scene-window">${browser(demo)}</div>
-        <div class="scene-phone">${phone(demo)}</div>
-        <div class="float float-card float-perf">
-          <span class="ring" data-ring style="--off:1"><svg viewBox="0 0 36 36"><circle class="track" cx="18" cy="18" r="15.9"/><circle class="bar" cx="18" cy="18" r="15.9"/></svg><b>99</b></span>
-          <span><b>Performance</b><small>Lighthouse, mobile</small></span>
+      <figure class="showcase" data-showcase>
+        <div class="showcase-frame">
+          <div class="browser" data-ui>
+            <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">${icon.lock}<span data-showcase-url>${esc(projects[0].domain)}</span></span></div>
+            <div class="browser-screen">
+              ${projects.map((p, i) => html`<img src="${p.screenshot}" alt="${esc(p.name)} homepage, designed and built by Roffey-Roberts Web" width="1440" height="936" decoding="async" ${i === 0 ? 'fetchpriority="high"' : 'loading="lazy"'} data-showcase-shot="${i}"${i ? ' class="is-off"' : ''}>`)}
+            </div>
+          </div>
         </div>
-        <div class="float float-card float-secure">
-          <span class="mini-shield">${icon.shield}</span>
-          <span><b>Secured</b><small>SSL · backups · monitoring</small></span>
-          <span class="status-dot"></span>
-        </div>
-        <div class="float float-card float-lead" data-lead>
-          <span class="avatar" data-lead-initials>SM</span>
-          <span><b data-lead-title>New enquiry: Sam, Winchester</b><small data-lead-text>Boiler replacement · via Google Ads · just now</small></span>
-        </div>
-      </div>
+        <figcaption class="showcase-cap">
+          <nav class="showcase-tabs" aria-label="Recent client websites">
+            ${projects.map((p, i) => html`<a class="showcase-tab" href="/work/${p.slug}" ${i === 0 ? 'aria-current="true" ' : ''}data-showcase-tab="${i}" data-domain="${esc(p.domain)}" data-meta="${esc(p.sector)}, ${esc(p.location.split(',')[0])}"><span>${esc(p.name)}</span></a>`)}
+          </nav>
+          <p class="showcase-meta"><span data-showcase-meta>${esc(projects[0].sector)}, ${esc(projects[0].location.split(',')[0])}</span> <a class="link link-arrow" href="/work/${projects[0].slug}" data-showcase-link>Read the case study${icon.arrowRight}</a></p>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
   <div class="marquee" aria-hidden="true">
     <div class="marquee-track">
-      ${[0, 1].map(() => html`<ul>${['Website design', 'SEO', 'Google Ads', 'Meta Ads', 'Digital marketing', 'Cyber security', 'Cyber Essentials', 'Hosting & care', 'Landing pages', 'Google Business Profile', 'Email protection', 'Backups', 'Staff training'].map((t) => html`<li>${icon.sparkle}${t}</li>`)}</ul>`)}
+      ${[0, 1].map(() => html`<ul>${['Website design', 'SEO', 'Google Ads', 'Meta Ads', 'Digital marketing', 'Cyber security', 'Cyber Essentials', 'IT support', 'Microsoft 365', 'Hosting & care', 'Google Business Profile', 'Backups', 'Staff training'].map((t) => html`<li>${t}</li>`)}</ul>`)}
     </div>
   </div>
 
   <section class="section" aria-labelledby="services-title">
     <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">What we do</span>
-        <h2 class="h2" id="services-title">Your website, marketing and IT, <span class="grad-text">under one roof.</span></h2>
-        <p class="lede">Most businesses juggle a designer, an SEO agency, someone for the ads and an IT person who only appears when something breaks. We do all seven parts, so nothing falls through the gaps and every part pulls in the same direction.</p>
+      <div class="section-head section-head-split" data-reveal>
+        <h2 class="h2" id="services-title">Your website, marketing and IT, under one roof.</h2>
+        <p class="lede">Most businesses juggle a designer, an SEO agency, someone for the ads and an IT person who only appears when something breaks. We do all seven parts, so nothing falls through the gaps.</p>
       </div>
       <div class="bento" data-reveal-children>
         ${services.map((s) => serviceCard(s))}
@@ -122,35 +94,33 @@ export function pages() {
     </div>
   </section>
 
-  <section class="section section-tight" aria-label="Our standards">
+  <section class="section section-tight" aria-labelledby="standards-title">
     <div class="wrap">
+      <h2 class="h3 standards-title" id="standards-title" data-reveal>The standards every project ships with</h2>
       <div class="stats" data-reveal-children>
-        ${standards.map(([n, suffix, text]) => html`<div class="card stat" data-spot><b><span data-count="${n}">${n}</span>${suffix}</b><span>${esc(text)}</span></div>`)}
+        ${standards.map(([n, suffix, text]) => html`<div class="stat"><b><span data-count="${n}">${n}</span>${suffix}</b><span>${esc(text)}</span></div>`)}
       </div>
     </div>
   </section>
 
   <section class="section" aria-labelledby="work-title">
     <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">Recent work</span>
-        <h2 class="h2" id="work-title">Built for installers, engineers and studios <span class="grad-text">along the South Coast.</span></h2>
-        <p class="lede">Websites that have to earn their keep: found locally, fast on a phone, and built to turn visits into calls, quotes and bookings.</p>
+      <div class="section-head section-head-split" data-reveal>
+        <h2 class="h2" id="work-title">Built for firms along the South Coast.</h2>
+        <p class="lede">Installers, engineers and studios in Ringwood and Lymington. Websites that have to earn their keep: found locally, fast on a phone, and built to turn visits into calls and bookings.</p>
       </div>
       <div class="stack">
         ${projects.map(stackCard)}
       </div>
-      <p class="btn-row" style="margin-top:40px"><a class="btn btn-ghost" href="/work">All case studies${icon.arrowRight}</a></p>
+      <p class="btn-row stack-more"><a class="btn btn-ghost" href="/work" data-press>All case studies${icon.arrowRight}</a></p>
     </div>
   </section>
 
   ${testimonialSection(testimonials)}
 
-  <section class="section rel" aria-labelledby="preview-title" data-nosnippet>
-    ${aurora(true)}
-    <div class="wrap z">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">Try it</span>
+  <section class="section section-band" aria-labelledby="preview-title" data-nosnippet>
+    <div class="wrap">
+      <div class="section-head section-head-split" data-reveal>
         <h2 class="h2" id="preview-title">How does your business look on Google?</h2>
         <p class="lede">People decide which result to click in a couple of seconds, from two lines of text. Type in your details to see a draft of yours, and whether Google would cut it short.</p>
       </div>
@@ -176,33 +146,30 @@ export function pages() {
 
   <section class="section" aria-labelledby="process-title">
     <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">How it works</span>
-        <h2 class="h2" id="process-title">Four steps. Fixed price. <span class="grad-text">No surprises.</span></h2>
+      <div class="section-head section-head-split" data-reveal>
+        <h2 class="h2" id="process-title">Four steps. Fixed price. No surprises.</h2>
         <p class="lede">You’ll always know what’s happening, what it costs and what comes next.</p>
       </div>
       ${timeline(steps)}
     </div>
   </section>
 
-  <section class="section" aria-labelledby="promises-title">
-    <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">Straight talk</span>
+  <section class="section section-band" aria-labelledby="promises-title">
+    <div class="wrap promises-grid">
+      <div class="promises-head" data-reveal>
         <h2 class="h2" id="promises-title">The small print, in large print.</h2>
+        <p class="lede">Five things we put in writing on every job, so you know exactly where you stand.</p>
       </div>
       <ul class="promises" data-reveal-children>
-        ${promises.map(([ic, t, d], i) => html`<li class="card promise${i === promises.length - 1 ? ' promise-wide' : ''}" data-spot><span class="icon-tile">${ic}</span><div><b>${esc(t)}</b><p>${esc(d)}</p></div></li>`)}
+        ${promises.map(([, t, d]) => html`<li class="promise"><b>${esc(t)}</b><p>${esc(d)}</p></li>`)}
       </ul>
     </div>
   </section>
 
-
   <section class="section section-tight" aria-labelledby="guides-title">
     <div class="wrap">
-      <div class="section-head" data-reveal>
-        <span class="eyebrow">Guides</span>
-        <h2 class="h2" id="guides-title">Read before you <span class="grad-text">hire anyone.</span></h2>
+      <div class="section-head section-head-split" data-reveal>
+        <h2 class="h2" id="guides-title">Read before you hire anyone.</h2>
         <p class="lede">What things cost, how local search works, which ads to run first and what Cyber Essentials involves.</p>
       </div>
       <div class="guide-grid" data-reveal-children>${guides.map(guideCard)}</div>

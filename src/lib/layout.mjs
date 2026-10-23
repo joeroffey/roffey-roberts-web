@@ -118,7 +118,7 @@ function header(path) {
         </ul>
       </nav>
       ${site.phone && html`<a class="btn btn-ghost btn-sm header-phone" href="tel:${esc(site.phoneHref || site.phone)}">${icon.phone}<span>${esc(site.phone)}</span></a>`}
-      <a class="btn btn-primary btn-sm header-cta" href="/contact" data-magnet>Start a project${icon.arrowRight}</a>
+      <a class="btn btn-primary btn-sm header-cta" href="/contact" data-press>Start a project${icon.arrowRight}</a>
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-menu" data-menu-toggle>
         <span class="menu-open">${icon.menu}</span><span class="menu-close">${icon.close}</span><span class="sr-only">Menu</span>
       </button>
@@ -272,6 +272,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/css/site.css${v}">
 <script>document.documentElement.classList.add('js')</script>
+<script src="/js/motion.js${v}" defer></script>
 <script src="/js/site.js${v}" defer></script>
 ${trackingConfig}
 ${jsonLd(graph)}
@@ -284,8 +285,6 @@ ${body}
 </main>
 ${footer()}
 ${consentBanner()}
-<div class="cursor" aria-hidden="true" data-cursor-dot></div>
-<div class="cursor-ring" aria-hidden="true" data-cursor-ring><span>View</span></div>
 </body>
 </html>
 `;

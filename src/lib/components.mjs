@@ -66,7 +66,7 @@ export function browser(p, { mobile = false } = {}) {
     ? html`<img src="${p.screenshot}" alt="${esc(p.name)} homepage, designed and built by Roffey-Roberts Web" loading="lazy" decoding="async" width="1440" height="936">`
     : mockMarkup(p, mobile);
   return html`
-  <div class="browser" aria-hidden="true">
+  <div class="browser" data-ui aria-hidden="true">
     <div class="browser-bar"><span class="browser-dots"><i></i><i></i><i></i></span><span class="browser-url">${icon.lock}${esc(p.domain)}</span></div>
     <div class="browser-screen">${screen}</div>
   </div>`;
@@ -95,7 +95,7 @@ export function serviceVisual(slug, labels) {
         <div class="vis-spark"><span>Cost per enquiry, falling</span><svg viewBox="0 0 90 28" fill="none" aria-hidden="true"><path d="M2 6c10 2 14 10 24 12s14-4 24 0 14 6 24 4 10-6 14-10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
       </div>`;
     case 'digital-marketing':
-      return html`<ul class="vis-channels"><li>${icon.mail} Email</li><li>${icon.star} <span class="stars">★★★★★</span> Reviews</li><li>${icon.users} Social</li><li>${icon.file} Landing pages</li><li>${icon.chart} Tracking</li></ul>`;
+      return html`<ul class="vis-channels"><li>${icon.mail} Email</li><li>${icon.star} Reviews</li><li>${icon.users} Social</li><li>${icon.file} Landing pages</li><li>${icon.chart} Tracking</li></ul>`;
     case 'cyber-security':
       return html`<div class="vis-shield">${icon.shield}</div><ul class="vis-locks">${(labels || ['MFA', 'DMARC', 'Backups', 'Updates']).map((l) => html`<li>${esc(l)}</li>`)}</ul>`;
     case 'it-support':
@@ -111,10 +111,9 @@ const bentoSize = { 'website-design': 'b-7', seo: 'b-5', 'digital-marketing': 'b
 
 export const serviceCard = (s, size = bentoSize[s.slug]) => html`
   <a class="card card-hover service-card ${size}" href="/services/${s.slug}" data-spot>
-    <div class="service-card-head"><span class="icon-tile">${serviceIcons[s.slug]}</span><span class="link-icon">${icon.arrowUpRight}</span></div>
-    <h3>${esc(s.name)}</h3>
+    <div class="service-card-head"><h3>${esc(s.name)}</h3><span class="link-icon">${icon.arrowUpRight}</span></div>
     <p>${esc(s.card)}</p>
-    <div class="service-visual">${serviceVisual(s.slug)}</div>
+    <div class="service-visual" data-ui aria-hidden="true">${serviceVisual(s.slug)}</div>
   </a>`;
 
 // ---------------------------------------------------------------------------
@@ -131,7 +130,6 @@ export const faqSection = (faqs, { heading = 'Questions, answered', text = 'The 
   <section class="section" aria-labelledby="${id}-title">
     <div class="wrap faq-grid">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">FAQ</span>
         <h2 class="h2" id="${id}-title">${heading}</h2>
         <p class="lede">${text}</p>
       </div>
@@ -158,13 +156,12 @@ export const cta = ({
 } = {}) => html`
   <section class="cta" aria-labelledby="cta-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z cta-inner" data-reveal>
       <h2 class="display cta-title" id="cta-title">${heading}</h2>
       <p class="lede">${text}</p>
       <div class="btn-row">
-        <a class="btn btn-primary btn-lg" href="${href}">${button}${icon.arrowRight}</a>
-        ${review && html`<a class="btn btn-ghost btn-lg" href="/contact?review=1">Get a free website review</a>`}
+        <a class="btn btn-primary btn-lg" href="${href}" data-press>${button}${icon.arrowRight}</a>
+        ${review && html`<a class="btn btn-ghost btn-lg" href="/contact?review=1" data-press>Get a free website review</a>`}
       </div>
     </div>
   </section>`;
@@ -174,9 +171,9 @@ export const timeline = (steps) => html`
     ${steps.map(([t, d], i) => html`<li class="step" style="--i:${i}"><span class="step-n" aria-hidden="true">${i + 1}</span><div class="card step-card" data-spot><h3>${esc(t)}</h3><p>${esc(d)}</p></div></li>`)}
   </ol>`;
 
-export const featureGrid = (items, icons = []) => html`
+export const featureGrid = (items) => html`
   <ul class="feature-grid" data-reveal-children>
-    ${items.map(([t, d], i) => html`<li class="card feature" data-spot><span class="icon-tile">${icons[i] || icon.check}</span><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`)}
+    ${items.map(([t, d]) => html`<li class="card feature"><h3>${esc(t)}</h3><p>${esc(d)}</p></li>`)}
   </ul>`;
 
 export const tags = (p) => html`<div class="tags">${p.scope.map((s) => html`<span class="tag">${esc(serviceBySlug[s]?.short || s)}</span>`)}</div>`;
@@ -194,8 +191,8 @@ export const workCard = (p) => html`
 export const stackCard = (p, i) => html`
   <article class="stack-card" style="--i:${i}">
     <div class="stack-text">
-      <div class="tags"><span class="tag tag-accent">${esc(p.sector)}</span><span class="tag">${esc(p.location.split(',')[0])}</span></div>
       <h3><a href="/work/${p.slug}">${esc(p.name)}</a></h3>
+      <p class="stack-sector">${esc(p.sector)}, ${esc(p.location.split(',')[0])}</p>
       <p>${esc(p.summary)}</p>
       ${tags(p)}
       <div class="stack-links">
@@ -223,7 +220,6 @@ export const testimonialSection = (items, { heading = 'What clients say', eyebro
   <section class="section section-tight" aria-labelledby="testimonials-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">${esc(eyebrow)}</span>
         <h2 class="h2" id="testimonials-title">${esc(heading)}</h2>
       </div>
       <div class="quote-grid" data-reveal-children>
@@ -246,7 +242,6 @@ export const resultsBlock = (results) =>
   <section class="section section-tight" aria-labelledby="results-title">
     <div class="wrap">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">Results</span>
         <h2 class="h2" id="results-title">What changed.</h2>
       </div>
       <div class="stats" data-reveal-children>

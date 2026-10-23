@@ -12,11 +12,9 @@ function indexPage() {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Work', '/work']])}
-        <span class="eyebrow">Work that works</span>
         <h1 class="display h1 page-title" id="page-title">Website design case studies <span class="grad-text">from the South Coast.</span></h1>
         <p class="lede">Websites for installers, engineers and studios along the South Coast. Each one built to be found locally and to turn visits into calls, quotes and bookings.</p>
       </div>
@@ -50,7 +48,6 @@ function projectPage(p, i) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="grid-bg" aria-hidden="true"></div>
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
@@ -70,7 +67,7 @@ function projectPage(p, i) {
 
   <section class="section" aria-labelledby="brief-title">
     <div class="wrap two-col">
-      <div data-reveal><span class="eyebrow">The brief</span><h2 class="h2" id="brief-title" style="margin-top:16px">What they needed</h2></div>
+      <div data-reveal><h2 class="h2" id="brief-title">What they needed</h2></div>
       <div class="lead-text" data-reveal>${p.brief.map((t) => html`<p>${esc(t)}</p>`)}</div>
     </div>
   </section>
@@ -79,7 +76,6 @@ function projectPage(p, i) {
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>
-        <span class="eyebrow">What we built</span>
         <h2 class="h2" id="built-title">Designed around how <span class="grad-text">customers choose.</span></h2>
         <div class="pill-list" style="margin-top:8px">${p.scope.map((s) => html`<a href="/services/${s}">${serviceIcons[s]}${esc(serviceBySlug[s].name)}</a>`)}</div>
       </div>
@@ -94,7 +90,6 @@ function projectPage(p, i) {
   <section class="section" aria-labelledby="search-title">
     <div class="wrap tool-grid">
       <div class="section-head" data-reveal style="margin:0">
-        <span class="eyebrow">In search</span>
         <h2 class="h2" id="search-title">How it reads on Google.</h2>
         <p class="lede">The homepage title leads with the services and the area customers search for, with the brand at the end.</p>
       </div>
