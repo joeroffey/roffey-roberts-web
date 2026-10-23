@@ -88,7 +88,7 @@
 
   /* ---------- Press and hover feedback (Motion springs) ---------- */
   if (M) {
-    var controls = '[data-press], .btn, .showcase-tab, .filter, .faq-q, .service-card .link-icon';
+    var controls = '[data-press], .btn, .filter';
     M.press(controls, function (el) {
       M.animate(el, { scale: 0.96 }, SNAP);
       return function () { M.animate(el, { scale: 1 }, { type: 'spring', stiffness: 420, damping: 14 }); };
@@ -105,44 +105,35 @@
     }
   }
 
-  /* ---------- Hero showcase: the studio's real client sites ---------- */
-  var showcase = $('[data-showcase]');
-  if (showcase) {
-    var shots = $$('[data-showcase-shot]', showcase), tabs = $$('[data-showcase-tab]', showcase);
-    var urlEl = $('[data-showcase-url]', showcase), metaEl = $('[data-showcase-meta]', showcase), linkEl = $('[data-showcase-link]', showcase);
-    var current = 0, timer = null, visible = true, stopped = reduceMotion, STEP = 6000;
-    showcase.style.setProperty('--showcase-ms', STEP + 'ms');
+  /* ---------- Masthead: the client sites, one at a time ---------- */
+  var masthead = $('[data-masthead]');
+  if (masthead) {
+    var shots = $$('[data-masthead-shot]', masthead), items = $$('[data-masthead-item]', masthead);
+    var nameEl = $('[data-masthead-name]', masthead), metaEl = $('[data-masthead-meta]', masthead), linkEl = $('[data-masthead-link]', masthead);
+    var cur = 0, timer = null, visible = true, paused = false;
     var show = function (i) {
-      if (i === current) return;
-      current = i;
+      cur = i;
       shots.forEach(function (img, j) { img.classList.toggle('is-off', j !== i); });
-      tabs.forEach(function (t, j) { if (j === i) t.setAttribute('aria-current', 'true'); else t.removeAttribute('aria-current'); });
-      urlEl.textContent = tabs[i].getAttribute('data-domain');
-      metaEl.textContent = tabs[i].getAttribute('data-meta');
-      linkEl.setAttribute('href', tabs[i].getAttribute('href'));
+      nameEl.textContent = items[i].getAttribute('data-name');
+      metaEl.textContent = items[i].getAttribute('data-meta');
+      linkEl.setAttribute('href', items[i].getAttribute('data-href'));
     };
     var play = function () {
       clearInterval(timer);
-      var on = !stopped && visible && !doc.hidden;
-      showcase.classList.toggle('is-playing', on);
-      if (on) timer = setInterval(function () { show((current + 1) % shots.length); restartBar(); }, STEP);
+      if (reduceMotion || paused || !visible || doc.hidden) return;
+      timer = setInterval(function () { show((cur + 1) % shots.length); }, 7000);
     };
-    // The progress bar lives on the current tab; re-adding the class restarts its animation.
-    var restartBar = function () { showcase.classList.remove('is-playing'); void showcase.offsetWidth; showcase.classList.add('is-playing'); };
-    tabs.forEach(function (t, i) {
-      var pick = function () { stopped = true; show(i); play(); };
-      t.addEventListener('pointerenter', function (e) { if (e.pointerType === 'mouse') pick(); });
-      t.addEventListener('focus', pick);
-    });
-    if ('IntersectionObserver' in window) {
-      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; play(); }, { threshold: 0.2 }).observe(showcase);
-    }
+    masthead.addEventListener('pointerenter', function () { paused = true; play(); });
+    masthead.addEventListener('pointerleave', function () { paused = false; play(); });
+    linkEl.addEventListener('focus', function () { paused = true; play(); });
+    linkEl.addEventListener('blur', function () { paused = false; play(); });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (en) { visible = en[0].isIntersecting; play(); }, { threshold: 0.2 }).observe(masthead);
     doc.addEventListener('visibilitychange', play);
     play();
-    // The signature move: the hero picture drifts up a little slower than the page as you leave the hero.
-    var hero = showcase.closest('.hero');
-    if (M && hero && window.matchMedia('(min-width: 1024px)').matches) {
-      M.scroll(M.animate($('.showcase-frame', showcase), { y: [0, -70], opacity: [1, 0.55] }, { ease: 'linear' }), { target: hero, offset: ['start start', 'end start'] });
+    // The picture drifts up a little slower than the page as the hero leaves the screen.
+    var heroEl = masthead.closest('.hero');
+    if (M && heroEl && window.matchMedia('(min-width: 1024px)').matches) {
+      M.scroll(M.animate($('.masthead-pic', masthead), { y: [0, -60] }, { ease: 'linear' }), { target: heroEl, offset: ['start start', 'end start'] });
     }
   }
 

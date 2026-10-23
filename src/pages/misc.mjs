@@ -43,7 +43,7 @@ function about() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['About', '/about']])}
-        <h1 class="display h1 page-title" id="page-title">A small Hampshire web and IT studio, <span class="grad-text">on purpose.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">A small Hampshire web and IT studio.</h1>
         <p class="lede">${esc(site.name)} is a web and IT studio based in ${esc(site.base)}. We build the websites and marketing that bring businesses work, and look after the IT, security and hosting that keep them working.</p>
       </div>
     </div>
@@ -99,7 +99,7 @@ function about() {
   <section class="section" aria-labelledby="where-title">
     <div class="wrap tool-grid">
       <div class="section-head" data-reveal style="margin:0">
-        <h2 class="h2" id="where-title">${esc(site.base)}, the South Coast, and <span class="grad-text">anywhere in the UK.</span></h2>
+        <h2 class="h2" id="where-title">${esc(site.base)}, the South Coast and the UK.</h2>
         <p class="lede">We’re based in ${esc(site.base)} and most of our clients are in and around ${esc(site.towns.slice(0, -1).join(', '))} and ${esc(site.towns.at(-1))}. We’re always happy to meet in person locally, and most projects run perfectly well over video calls, email and a shared preview link.</p>
         <div class="btn-row"><a class="btn btn-primary" href="/contact" data-press>Start a project${icon.arrowRight}</a></div>
       </div>
@@ -135,7 +135,7 @@ function contact() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Contact', '/contact']])}
-        <h1 class="display h1 page-title" id="page-title">Let’s start your <span class="grad-text">project.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">Let’s start your project.</h1>
         <p class="lede">Tell us a bit about your business and what you need. We reply to every enquiry within one working day, with straight advice and a clear next step.</p>
       </div>
     </div>
@@ -143,7 +143,7 @@ function contact() {
 
   <section class="section" style="padding-top:0">
     <div class="wrap contact-grid">
-      <div class="card contact-card" data-reveal>
+      <div class="contact-card" data-reveal>
         <form class="enquiry" action="/api/contact" method="post" novalidate data-enquiry>
           <fieldset class="field-group">
             <legend>What do you need help with?</legend>
@@ -290,7 +290,7 @@ function notFound() {
     ${aurora()}
     <div class="wrap z">
       <div class="page-hero-copy">
-        <h1 class="display h1 page-title" id="page-title">This page isn’t <span class="grad-text">here.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">This page isn’t here.</h1>
         <p class="lede">The link may be old, or the address may have a typo. Try one of these instead.</p>
         <div class="pill-list">
           <a href="/">${icon.arrowRight}Home</a><a href="/services">${icon.layout}Services</a><a href="/work">${icon.eye}Work</a><a href="/contact">${icon.send}Start a project</a>

@@ -1,6 +1,6 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs } from '../lib/layout.mjs';
-import { aurora, breadcrumb, browser, cta, featureGrid, serpCard, workCard, serviceIcons, tags, resultsBlock, testimonialSection } from '../lib/components.mjs';
+import { aurora, breadcrumb, browser, shot, cta, featureGrid, serpCard, stackCard, serviceIcons, tags, resultsBlock, testimonialSection } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { services, serviceBySlug } from '../data/services.mjs';
 import { projects } from '../data/work.mjs';
@@ -15,7 +15,7 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Work', '/work']])}
-        <h1 class="display h1 page-title" id="page-title">Website design case studies <span class="grad-text">from the South Coast.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">Website case studies from the South Coast.</h1>
         <p class="lede">Websites for installers, engineers and studios along the South Coast. Each one built to be found locally and to turn visits into calls, quotes and bookings.</p>
       </div>
     </div>
@@ -26,7 +26,7 @@ function indexPage() {
         <button class="filter" type="button" aria-pressed="true" data-filter="all">All projects</button>
         ${used.map((s) => html`<button class="filter" type="button" aria-pressed="false" data-filter="${s.slug}">${esc(s.short)}</button>`)}
       </div>
-      <div class="work-grid" data-work-grid data-reveal-children>${projects.map(workCard)}</div>
+      <div class="stack" data-work-grid>${projects.map(stackCard)}</div>
     </div>
   </section>
   ${cta({ heading: 'Your business could be next.' })}
@@ -61,7 +61,7 @@ function projectPage(p, i) {
           <div><dt>Live site</dt><dd><a href="${p.url}" rel="noopener" target="_blank">${esc(p.domain)}${icon.arrowUpRight}<span class="sr-only"> (opens in a new tab)</span></a></dd></div>
         </dl>
       </div>
-      <div class="case-shot z" data-reveal style="--d:0.15s">${browser(p)}</div>
+      <div class="case-shot z" data-reveal style="--d:0.15s">${shot(p)}</div>
     </div>
   </section>
 
@@ -76,10 +76,13 @@ function projectPage(p, i) {
     ${aurora(true)}
     <div class="wrap z">
       <div class="section-head" data-reveal>
-        <h2 class="h2" id="built-title">Designed around how <span class="grad-text">customers choose.</span></h2>
+        <h2 class="h2" id="built-title">Designed around how customers choose.</h2>
         <div class="pill-list" style="margin-top:8px">${p.scope.map((s) => html`<a href="/services/${s}">${serviceIcons[s]}${esc(serviceBySlug[s].name)}</a>`)}</div>
       </div>
-      ${featureGrid(p.built, [icon.layout, icon.pin, icon.send, icon.phone, icon.shield, icon.server])}
+      <div class="built-grid">
+        ${p.phoneShot && html`<figure class="built-phone" data-reveal><img src="${p.phoneShot}" alt="${esc(p.name)} website at phone width" width="780" height="1688" loading="lazy" decoding="async"><figcaption>The homepage at phone width, as it is today.</figcaption></figure>`}
+        ${featureGrid(p.built)}
+      </div>
     </div>
   </section>
 
@@ -88,12 +91,12 @@ function projectPage(p, i) {
   ${testimonialSection(testimonials.filter((t) => t.project === p.slug), { heading: `What ${p.name} said`, eyebrow: 'Client feedback' })}
 
   <section class="section" aria-labelledby="search-title">
-    <div class="wrap tool-grid">
-      <div class="section-head" data-reveal style="margin:0">
-        <h2 class="h2" id="search-title">How it reads on Google.</h2>
+    <div class="wrap ax">
+      <div class="col-side" data-reveal>
+        <h2 class="h2" id="search-title">How it reads on Google</h2>
         <p class="lede">The homepage title leads with the services and the area customers search for, with the brand at the end.</p>
       </div>
-      <div class="card card-pad" data-reveal>${serpCard({ name: p.name, domain: p.domain, title: p.searchTitle })}</div>
+      <div class="tool" data-reveal>${serpCard({ name: p.name, domain: p.domain, title: p.searchTitle })}</div>
     </div>
   </section>
 
@@ -101,8 +104,7 @@ function projectPage(p, i) {
     <div class="wrap">
       <a class="card card-hover next-card" href="/work/${next.slug}" data-spot data-cursor="View" data-reveal>
         <div>
-          <p class="next-label" id="next-title">Next case study</p>
-          <p class="next-name">${esc(next.name)}</p>
+          <p class="next-name" id="next-title">Next: ${esc(next.name)}</p>
           <p class="muted" style="margin-top:12px">${esc(next.sector)}</p>
           ${tags(next)}
           <p class="link link-arrow" style="margin-top:22px">Read the case study${icon.arrowRight}</p>

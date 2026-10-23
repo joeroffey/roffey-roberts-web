@@ -78,7 +78,7 @@ function guidePage(g) {
     </div>
   </section>
 
-  ${cta({ heading: 'Want a straight answer for your business?', text: 'Tell us what you are trying to do and we will say what we would do in your position, with a fixed quote if you want one.' })}
+  ${cta({ heading: 'Want a straight answer?', text: 'Tell us what you are trying to do and we will say what we would do in your position, with a fixed quote if you want one.' })}
   `;
 
   return {
@@ -116,7 +116,7 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Guides', '/guides']])}
-        <h1 class="display h1 page-title" id="page-title">Plain answers to the questions <span class="grad-text">before you hire anyone.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">Plain answers, before you hire anyone.</h1>
         <p class="lede">What things cost, how local search actually works, which ads to run first and what Cyber Essentials involves. Written from the work we do for businesses on the South Coast, with no sales pitch in the way.</p>
       </div>
     </div>
@@ -128,7 +128,7 @@ function indexPage() {
     </div>
   </section>
 
-  ${cta({ heading: 'Got a question these don’t answer?', text: 'Ask it. We reply to every enquiry personally, usually the same working day.' })}
+  ${cta({ heading: 'Ask us anything.', text: 'Ask it. We reply to every enquiry personally, usually the same working day.' })}
   `;
 
   return {

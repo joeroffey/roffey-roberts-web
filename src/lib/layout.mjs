@@ -103,7 +103,7 @@ function header(path) {
   return html`
   <a class="skip" href="#main">Skip to content</a>
   <div class="scroll-progress" aria-hidden="true" data-progress></div>
-  <header class="site-header" data-header>
+  <header class="site-header" id="top" data-header>
     <div class="nav-pill">
       <a class="brand brand-main" href="/" aria-label="${esc(site.name)}, home">${logo("logo-draw")}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
       <nav class="nav" aria-label="Main">
@@ -139,52 +139,46 @@ function header(path) {
 
 function footer() {
   const year = new Date().getFullYear();
+  const profiles = site.sameAs.filter((u, i, arr) => arr.findIndex((o) => profileLabel(o) === profileLabel(u)) === i);
   return html`
   <footer class="site-footer">
     <div class="wrap">
       <p class="footer-word" aria-hidden="true">Roffey-Roberts</p>
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a class="brand" href="/" aria-label="${esc(site.name)}, home">${markSvg}<span class="brand-name">Roffey-Roberts <span>Web</span></span></a>
-          <p>A ${esc(site.base)} web and IT studio. Websites, SEO, marketing, ads, cyber security, IT support and hosting for businesses across the South Coast and the UK.</p>
-          <a class="btn btn-ghost btn-sm" href="/contact" style="justify-self:start">Start a project${icon.arrowRight}</a>
+      <div class="footer-row">
+        <div class="footer-reach">
+          ${site.email && html`<a href="mailto:${esc(site.email)}">${esc(site.email)}</a>`}
+          ${site.phone && html`<a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a>`}
+          <a href="/contact">Send an enquiry</a>
+          <a href="/web-design">${esc(site.base)} and the South Coast</a>
         </div>
-        <nav class="footer-col" aria-label="Services">
-          <p class="footer-head">Services</p>
-          <ul>${services.map((s) => html`<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`)}</ul>
-        </nav>
-        <nav class="footer-col" aria-label="Areas">
-          <p class="footer-head">Areas</p>
-          <ul>
-            ${areas.map((a) => html`<li><a href="/web-design/${a.slug}">Web design ${esc(a.short)}</a></li>`)}
-            <li><a href="/web-design">All areas</a></li>
-          </ul>
-        </nav>
-        <nav class="footer-col" aria-label="Studio">
-          <p class="footer-head">Studio</p>
-          <ul>
-            <li><a href="/work">Work</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/guides">Guides</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/privacy">Privacy</a></li>
-          </ul>
-        </nav>
-        <div class="footer-col">
-          <p class="footer-head">Get in touch</p>
-          <ul>
-            ${site.email && html`<li><a href="mailto:${esc(site.email)}">${esc(site.email)}</a></li>`}
-            ${site.phone && html`<li><a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a></li>`}
-            <li><a href="/contact">Send an enquiry</a></li>
-            <li><a href="/contact?review=1">Free website review</a></li>
-            ${site.reviewUrl && html`<li><a href="${esc(site.reviewUrl)}" rel="noopener">Review us on Google</a></li>`}
-            ${site.sameAs.filter((u, i, arr) => arr.findIndex((o) => profileLabel(o) === profileLabel(u)) === i).map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(profileLabel(u))}</a></li>`)}
-          </ul>
+        <div class="footer-cols">
+          <nav class="footer-col" aria-label="Services">
+            <p class="footer-head">Services</p>
+            <ul>${services.map((s) => html`<li><a href="/services/${s.slug}">${esc(s.name)}</a></li>`)}</ul>
+          </nav>
+          <nav class="footer-col" aria-label="Areas">
+            <p class="footer-head">Areas</p>
+            <ul>
+              ${areas.map((a) => html`<li><a href="/web-design/${a.slug}">Web design ${esc(a.short)}</a></li>`)}
+              <li><a href="/web-design">All areas</a></li>
+            </ul>
+          </nav>
+          <nav class="footer-col" aria-label="Studio">
+            <p class="footer-head">Studio</p>
+            <ul>
+              <li><a href="/work">Work</a></li>
+              <li><a href="/about">About</a></li>
+              <li><a href="/guides">Guides</a></li>
+              <li><a href="/contact?review=1">Free website review</a></li>
+              ${site.reviewUrl && html`<li><a href="${esc(site.reviewUrl)}" rel="noopener">Review us on Google</a></li>`}
+              ${profiles.map((u) => html`<li><a href="${esc(u)}" rel="me noopener">${esc(profileLabel(u))}</a></li>`)}
+            </ul>
+          </nav>
         </div>
       </div>
       <div class="footer-base">
-        <p>© ${year} ${esc(site.name)}. ${esc(site.base)}, UK.${site.phone && html` <a href="tel:${esc(site.phoneHref || site.phone)}">${esc(site.phone)}</a>`}</p>
-        <p><a href="/privacy">Privacy</a>${hasTracking && html`<button type="button" data-consent-open>Cookie settings</button>`}<a href="/sitemap.xml">Sitemap</a></p>
+        <p>© ${year} ${esc(site.name)}. ${esc(site.base)}, UK.</p>
+        <p><a href="/privacy">Privacy</a>${hasTracking && html`<button type="button" data-consent-open>Cookie settings</button>`}<a href="/sitemap.xml">Sitemap</a><a href="#top">Back to top</a></p>
       </div>
     </div>
   </footer>`;

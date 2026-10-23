@@ -34,6 +34,7 @@ const assetVersion = createHash('sha256')
 for (const p of projects) {
   const found = ['jpg', 'png', 'webp'].find((ext) => existsSync(join(staticDir, `img/work/${p.slug}.${ext}`)));
   if (found) p.screenshot = `/img/work/${p.slug}.${found}`;
+  if (existsSync(join(staticDir, `img/work/${p.slug}-phone.webp`))) p.phoneShot = `/img/work/${p.slug}-phone.webp`;
 }
 
 const all = [...home.pages(), ...services.pages(), ...areas.pages(), ...work.pages(), ...cyber.pages(), ...guides.pages(), ...misc.pages()];

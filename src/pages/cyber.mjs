@@ -1,6 +1,6 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs, faqSchema } from '../lib/layout.mjs';
-import { aurora, breadcrumb, cta, cyberCard, faqSection, featureGrid, serviceVisual, timeline } from '../lib/components.mjs';
+import { aurora, breadcrumb, cta, cyberCard, faqSection, featureGrid, timeline } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { cyberServices } from '../data/cyber.mjs';
 import { serviceBySlug } from '../data/services.mjs';
@@ -21,7 +21,7 @@ function cyberPage(c) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="wrap z page-hero-grid">
+    <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
         <h1 class="display h1 page-title" id="page-title">${esc(c.h1)}</h1>
@@ -29,12 +29,6 @@ function cyberPage(c) {
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href="${contactHref}" data-press>Talk to us${icon.arrowRight}</a>
           <a class="btn btn-ghost btn-lg" href="/services/cyber-security">All cyber security services</a>
-        </div>
-      </div>
-      <div class="page-visual" data-reveal style="--d:0.2s">
-        <div class="card" data-spot>
-          <div class="service-card-head"><span class="icon-tile">${icon[c.icon] || icon.shield}</span><span class="tag tag-accent">Cyber security</span></div>
-          <div class="service-visual" data-ui aria-hidden="true" style="margin-top:28px">${serviceVisual('cyber-security', c.visLabels)}</div>
         </div>
       </div>
     </div>

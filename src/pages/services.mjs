@@ -1,6 +1,6 @@
 import { html, esc, icon } from '../lib/html.mjs';
 import { breadcrumbs, faqSchema } from '../lib/layout.mjs';
-import { aurora, breadcrumb, cta, faqSection, featureGrid, serviceVisual, serviceIcons, serviceCard, timeline, workCard } from '../lib/components.mjs';
+import { aurora, breadcrumb, cta, faqSection, featureGrid, serviceIcons, serviceCard, timeline, workCard } from '../lib/components.mjs';
 import { site } from '../data/site.mjs';
 import { groups, services, servicesInGroup, serviceBySlug } from '../data/services.mjs';
 import { projectBySlug } from '../data/work.mjs';
@@ -17,7 +17,7 @@ function servicePage(s) {
   const body = html`
   <section class="page-hero" aria-labelledby="page-title">
     ${aurora()}
-    <div class="wrap z page-hero-grid">
+    <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb(crumbs)}
         <h1 class="display h1 page-title" id="page-title">${esc(s.h1)}</h1>
@@ -25,12 +25,6 @@ function servicePage(s) {
         <div class="btn-row">
           <a class="btn btn-primary btn-lg" href="/contact?service=${s.slug}" data-press>Start a project${icon.arrowRight}</a>
           ${related.length ? html`<a class="btn btn-ghost btn-lg" href="#related-work">See related work</a>` : ''}
-        </div>
-      </div>
-      <div class="page-visual" data-reveal style="--d:0.2s">
-        <div class="card" data-spot>
-          <div class="service-card-head"><span class="icon-tile">${serviceIcons[s.slug]}</span><span class="tag tag-accent">${esc(groups.find((g) => g.id === s.group).line)}</span></div>
-          <div class="service-visual" data-ui aria-hidden="true" style="margin-top:28px">${serviceVisual(s.slug)}</div>
         </div>
       </div>
     </div>
@@ -130,7 +124,7 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Services', '/services']])}
-        <h1 class="display h1 page-title" id="page-title">Websites, marketing, cyber security, <span class="grad-text">IT and hosting.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">Websites, marketing, cyber security, IT and hosting.</h1>
         <p class="lede">Everything a small business needs from its technology: the website and the marketing that bring in work, and the IT, security and hosting that keep everything running. Use one service or all seven; they’re designed to work together.</p>
         <div class="btn-row"><a class="btn btn-primary btn-lg" href="/contact" data-press>Start a project${icon.arrowRight}</a></div>
       </div>

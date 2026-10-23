@@ -1,5 +1,5 @@
-// Captures homepage screenshots of the case-study sites into static/img/work/<slug>.webp.
-// The build picks them up automatically and shows them inside the browser mock-ups.
+// Captures homepage screenshots of the case-study sites into static/img/work/<slug>.webp (laptop, 1440 wide)
+// and <slug>-phone.webp (phone, 390 wide at 2x). The build picks both up automatically.
 //
 // Run locally:  npm i playwright sharp && npx playwright install chromium && node scripts/screenshots.mjs
 // Or on GitHub: Actions → "Refresh case study screenshots" → Run workflow (commits the result to main).
@@ -18,8 +18,13 @@ const outDir = join(root, 'static/img/work');
 mkdirSync(outDir, { recursive: true });
 
 const browser = await chromium.launch();
-for (const p of projects) {
-  const page = await browser.newPage({ viewport: { width: 1440, height: 936 }, deviceScaleFactor: 1 });
+const shots = [
+  { suffix: '', viewport: { width: 1440, height: 936 }, deviceScaleFactor: 1, isMobile: false },
+  { suffix: '-phone', viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true },
+];
+for (const p of projects) for (const shotOpts of shots) {
+  const { suffix, ...ctx } = shotOpts;
+  const page = await browser.newPage(ctx);
   try {
     const res = await page.goto(p.url, { waitUntil: 'networkidle', timeout: 60000 });
     await page.waitForTimeout(1500);
@@ -33,11 +38,11 @@ for (const p of projects) {
     await page.evaluate(() => new Promise((r) => { window.scrollTo(0, 0); setTimeout(r, 700); }));
     await page.evaluate(() => document.fonts.ready);
     const png = await page.screenshot();
-    const file = join(outDir, `${p.slug}.webp`);
+    const file = join(outDir, `${p.slug}${suffix}.webp`);
     await sharp(png).webp({ quality: 82, effort: 6 }).toFile(file);
-    console.log(`${p.slug}: HTTP ${res && res.status()}, ${Math.round(statSync(file).size / 1024)} KB`);
+    console.log(`${p.slug}${suffix}: HTTP ${res && res.status()}, ${Math.round(statSync(file).size / 1024)} KB`);
   } catch (e) {
-    console.error(`${p.slug}: failed, ${e.message.split('\n')[0]}`);
+    console.error(`${p.slug}${suffix}: failed, ${e.message.split('\n')[0]}`);
     process.exitCode = 1;
   }
   await page.close();

@@ -62,7 +62,7 @@ function areaPage(a) {
     : ''}
 
   ${faqSection(a.faqs, { heading: `${a.short} questions`, text: 'What local businesses ask before they get in touch.' })}
-  ${cta({ heading: `Let’s talk about your ${a.short} business.`, href: `/contact?area=${encodeURIComponent(a.short)}` })}
+  ${cta({ heading: `Let’s talk, ${a.short}.`, href: `/contact?area=${encodeURIComponent(a.short)}` })}
   `;
 
   return {
@@ -96,7 +96,7 @@ function indexPage() {
     <div class="wrap z">
       <div class="page-hero-copy" data-reveal-children>
         ${breadcrumb([['Home', '/'], ['Areas', '/web-design']])}
-        <h1 class="display h1 page-title" id="page-title">Web design across Hampshire <span class="grad-text">and the South Coast.</span></h1>
+        <h1 class="display h1 page-title" id="page-title">Web design across Hampshire and the South Coast.</h1>
         <p class="lede">We’re based in ${esc(site.base)} and work with businesses from Portsmouth to Poole, and anywhere else in the UK over a video call. These are the places we know best.</p>
       </div>
     </div>
@@ -116,7 +116,7 @@ function indexPage() {
       </ul>
     </div>
   </section>
-  ${cta({ heading: 'Not on the list? We still work there.', text: 'Most projects run over video calls, email and a shared preview link, wherever you are in the UK.' })}
+  ${cta({ heading: 'We work anywhere in the UK.', text: 'Most projects run over video calls, email and a shared preview link, wherever you are in the UK.' })}
   `;
   return {
     path: '/web-design',
